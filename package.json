@@ -1,0 +1,73 @@
+{
+  "name": "@uphold/uphold-sdk-javascript",
+  "version": "1.0.0",
+  "description": "Uphold SDK for JavasScript",
+  "keywords": [
+    "api",
+    "javascript",
+    "sdk",
+    "uphold"
+  ],
+  "license": "MIT",
+  "author": "Uphold Inc.",
+  "main": "dist/node/index.js",
+  "repository": "git@github.com:uphold/uphold-sdk-javascript.git",
+  "scripts": {
+    "build": "rm -rf dist && yarn build:node && yarn build:browser",
+    "build:browser": "webpack --progress",
+    "build:node": "babel src/node -d dist/node && babel src/core -d dist/core",
+    "changelog": "github-changelog-generator --owner uphold --repo uphold-sdk-javascript --future-release=v$npm_package_version > CHANGELOG.md",
+    "cover": "yarn test -- --coverage",
+    "docs": "yarn docs:build && yarn docs:prepare && yarn docs:publish",
+    "docs:build": "gitbook install && cd docs && ../node_modules/.bin/gitbook build && cp -R images/* _book/gitbook/images",
+    "docs:prepare": "cd docs/_book && git init && git checkout -b gh-pages && git add . && git commit -m 'Update documentation'",
+    "docs:publish": "cd docs/_book && git push git@github.com:uphold/uphold-sdk-javascript gh-pages --force && cd .. && rm -rf _book",
+    "lint": "eslint --cache src test",
+    "release": "npm version $1 -m 'Release %s'",
+    "tdd": "yarn test -- --watch",
+    "test": "jest --config jest.json",
+    "version": "yarn build && yarn changelog && git add dist CHANGELOG.md"
+  },
+  "browser": "dist/browser/uphold-sdk-javascript.js",
+  "dependencies": {
+    "base64-js": "1.2.0",
+    "content-range": "1.1.0",
+    "lodash.merge": "4.6.0",
+    "qs": "6.4.0",
+    "request": "2.81.0",
+    "request-promise": "4.2.0",
+    "standard-error": "1.1.0",
+    "text-encoding": "0.6.4"
+  },
+  "devDependencies": {
+    "@uphold/github-changelog-generator": "0.4.1",
+    "babel-cli": "6.24.1",
+    "babel-core": "6.24.1",
+    "babel-eslint": "7.2.3",
+    "babel-loader": "7.0.0",
+    "babel-plugin-istanbul": "4.1.3",
+    "babel-plugin-transform-object-rest-spread": "6.23.0",
+    "babel-polyfill": "6.23.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-es2015-node": "4.0.2",
+    "eslint": "3.19.0",
+    "eslint-config-seegno": "9.0.0",
+    "eslint-plugin-babel": "4.1.1",
+    "fetch-mock": "5.10.0",
+    "gitbook-cli": "2.3.0",
+    "html-tags": "1.1.1",
+    "is-html": "1.1.0",
+    "isomorphic-fetch": "2.2.1",
+    "jest": "19.0.2",
+    "json-loader": "0.5.4",
+    "nock": "9.0.13",
+    "pre-commit": "1.2.2",
+    "webpack": "2.5.0"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "pre-commit": [
+    "lint"
+  ]
+}

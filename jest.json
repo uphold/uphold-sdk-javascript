@@ -1,0 +1,18 @@
+{
+  "coverageReporters": [
+    "html",
+    "lcov",
+    "text-summary"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  },
+  "setupTestFrameworkScriptFile": "./test/index.js",
+  "testRegex": "test/.*\\.spec.js",
+  "verbose": true
+}

@@ -1,0 +1,11 @@
+env:
+  browser: true
+  jasmine: true
+  jest: true
+  mocha: false
+
+extends: seegno
+
+rules:
+  no-underscore-dangle: [0]
+  id-match: ['error', '^_$|^[_a-zA-Z][_a-zA-Z0-9]*$|^[A-Z][_A-Z0-9]+[_A-Z0-9]$']
