@@ -10,13 +10,13 @@
   <a href="https://travis-ci.org/uphold/uphold-sdk-javascript">
     <img src="https://img.shields.io/travis/uphold/uphold-sdk-javascript/master.svg?style=flat-square">
   </a>
-  <a href="https://www.npmjs.com/package/uphold-sdk-javascript">
-    <img src="https://img.shields.io/npm/v/uphold-sdk-javascript.svg?style=flat-square"/>
+  <a href="https://www.npmjs.com/package/@uphold/uphold-sdk-javascript">
+    <img src="https://img.shields.io/npm/v/@uphold/uphold-sdk-javascript.svg?style=flat-square"/>
   </a>
-  <img src="https://img.shields.io/node/v/uphold-sdk-javascript.svg?style=flat-square"/>
+  <img src="https://img.shields.io/badge/node-%3E=4-brightgreen.svg?style=flat-square"/>
   <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square"/>
   <a href="https://github.com/uphold/uphold-sdk-javascript/blob/master/LICENSE">
-    <img src="https://img.shields.io/npm/l/express.svg?style=flat-square"/>
+    <img src="https://img.shields.io/npm/l/@uphold/uphold-sdk-javascript.svg?style=flat-square"/>
   </a>
 </p>
 
