@@ -3,7 +3,6 @@
  * Module dependencies.
  */
 
-import packageConfig from './package.json';
 import webpack from 'webpack';
 
 /**
@@ -13,30 +12,27 @@ import webpack from 'webpack';
 export default {
   entry: './src/browser/index.js',
   module: {
-    loaders: [
-      {
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          plugins: [
-            ['transform-es2015-for-of', {
-              loose: true
-            }]
-          ],
-          presets: ['es2015']
-        },
-        test: /\.js$/
+    loaders: [{
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+      query: {
+        plugins: [
+          ['transform-es2015-for-of', {
+            loose: true
+          }]
+        ],
+        presets: ['es2015']
       },
-      {
-        exclude: /node_modules\/(?!html-tags).+/,
-        loader: 'json-loader',
-        test: /\.json$/
-      }
-    ]
+      test: /\.js$/
+    }, {
+      exclude: /node_modules\/(?!html-tags).+/,
+      loader: 'json-loader',
+      test: /\.json$/
+    }]
   },
   output: {
-    filename: `${packageConfig.name}.js`,
-    library: packageConfig.name,
+    filename: 'uphold-sdk-javascript.js',
+    library: 'uphold-sdk-javascript',
     libraryTarget: 'commonjs2',
     path: `${__dirname}/dist/browser`
   },
