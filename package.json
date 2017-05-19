@@ -14,7 +14,7 @@
   "repository": "git@github.com:uphold/uphold-sdk-javascript.git",
   "scripts": {
     "build": "rm -rf dist && yarn build:node && yarn build:browser",
-    "build:browser": "webpack --progress",
+    "build:browser": "yarn && webpack --progress",
     "build:node": "babel src/node -d dist/node && babel src/core -d dist/core",
     "changelog": "github-changelog-generator --owner uphold --repo uphold-sdk-javascript --future-release=v$npm_package_version > CHANGELOG.md",
     "cover": "yarn test -- --coverage",
