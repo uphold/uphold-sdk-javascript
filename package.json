@@ -1,6 +1,6 @@
 {
   "name": "@uphold/uphold-sdk-javascript",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Uphold SDK for JavasScript",
   "keywords": [
     "api",

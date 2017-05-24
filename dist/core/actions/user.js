@@ -3,6 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 exports.getMe = getMe;
 exports.updateMe = updateMe;
 
@@ -16,7 +19,7 @@ function getMe(options) {
   return this.api('/me', options);
 }
 
-function updateMe(_ref, options) {
+function updateMe(_ref, otp, options) {
   let address = _ref.address,
       birthdate = _ref.birthdate,
       country = _ref.country,
@@ -27,7 +30,7 @@ function updateMe(_ref, options) {
       state = _ref.state,
       username = _ref.username;
 
-  return this.api('/me', (0, _lodash2.default)({
+  options = (0, _lodash2.default)({
     body: {
       address: address,
       birthdate: birthdate,
@@ -40,5 +43,13 @@ function updateMe(_ref, options) {
       username: username
     },
     method: 'patch'
-  }, options));
+  }, options);
+
+  if (otp) {
+    options.headers = _extends({
+      'otp-token': otp
+    }, options.headers);
+  }
+
+  return this.api('/me', options);
 }
