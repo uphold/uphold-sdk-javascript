@@ -29,7 +29,7 @@ describe('UserActions', () => {
         settings: 'qex',
         state: 'qix',
         username: 'qox'
-      }, { fiz: 'faz' })
+      }, false, { fiz: 'faz' })
         .then(result => {
           expect(result).toBe('foo');
           expect(sdk.api).toBeCalledWith('/me', {
@@ -45,6 +45,29 @@ describe('UserActions', () => {
               username: 'qox'
             },
             fiz: 'faz',
+            method: 'patch'
+          });
+        });
+    });
+
+    it('should make a request to `PATCH /me` with otp', () => {
+      return sdk.updateMe({
+        address: 'bar'
+      }, 'biz', {
+        headers: {
+          baz: 'buz'
+        }
+      })
+        .then(result => {
+          expect(result).toBe('foo');
+          expect(sdk.api).toBeCalledWith('/me', {
+            body: {
+              address: 'bar'
+            },
+            headers: {
+              baz: 'buz',
+              'otp-token': 'biz'
+            },
             method: 'patch'
           });
         });
