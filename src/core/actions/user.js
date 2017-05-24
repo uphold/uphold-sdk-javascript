@@ -4,8 +4,8 @@ export function getMe(options) {
   return this.api('/me', options);
 }
 
-export function updateMe({ address, birthdate, country, firstName, identity, lastName, settings, state, username }, options) {
-  return this.api('/me', merge({
+export function updateMe({ address, birthdate, country, firstName, identity, lastName, settings, state, username }, otp, options) {
+  options = merge({
     body: {
       address,
       birthdate,
@@ -18,5 +18,14 @@ export function updateMe({ address, birthdate, country, firstName, identity, las
       username
     },
     method: 'patch'
-  }, options));
+  }, options);
+
+  if (otp) {
+    options.headers = {
+      'otp-token': otp,
+      ...options.headers
+    };
+  }
+
+  return this.api('/me', options);
 }
