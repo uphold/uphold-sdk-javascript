@@ -55,7 +55,7 @@ describe('CardTransactionActions', () => {
 
   describe('createCardTransaction()', () => {
     it('should make a request to `POST /me/cards/:cardId/transactions`', () => {
-      return sdk.createCardTransaction('bar', { amount: 'biz', currency: 'baz', message: 'buz', securityCode: 'bez' }, false, false, { qux: 'qix' })
+      return sdk.createCardTransaction('bar', { amount: 'biz', currency: 'baz', destination: 'qax', message: 'buz', securityCode: 'bez' }, false, false, { qux: 'qix' })
         .then(result => {
           expect(result).toBe('foo');
           expect(sdk.api).toBeCalledWith('/me/cards/bar/transactions', {
@@ -64,6 +64,7 @@ describe('CardTransactionActions', () => {
                 amount: 'biz',
                 currency: 'baz'
               },
+              destination: 'qax',
               message: 'buz',
               securityCode: 'bez'
             },
@@ -74,7 +75,7 @@ describe('CardTransactionActions', () => {
     });
 
     it('should make a request to `POST /me/cards/:cardId/transactions` with commit query paramameter', () => {
-      return sdk.createCardTransaction('bar', { amount: 'biz', currency: 'baz', message: 'buz', securityCode: 'bez' }, true, false, { queryParams: { qux: 'qix' } })
+      return sdk.createCardTransaction('bar', { amount: 'biz', currency: 'baz', destination: 'qax', message: 'buz', securityCode: 'bez' }, true, false, { queryParams: { qux: 'qix' } })
         .then(result => {
           expect(result).toBe('foo');
           expect(sdk.api).toBeCalledWith('/me/cards/bar/transactions', {
@@ -83,6 +84,7 @@ describe('CardTransactionActions', () => {
                 amount: 'biz',
                 currency: 'baz'
               },
+              destination: 'qax',
               message: 'buz',
               securityCode: 'bez'
             },
