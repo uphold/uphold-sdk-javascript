@@ -16,12 +16,13 @@ The `commit` argument will add the `commit` query parameter.
 
 The `body` argument accepts the following keys:
 
-| Key            | Type   | Description                                                  |
-|:---------------|:-------|:-------------------------------------------------------------|
-| `amount`       | String | The value amount to send in the denominated currency         |
-| `currency`     | String | The currency by which you wish to denominate the transaction |
-| `message`      | String | Transaction details                                          |
-| `securityCode` | String | Credit card security code                                    |
+| Key            | Type   | Description                                                                                                                                                 |
+|:---------------|:-------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `amount`       | String | The value amount to send in the denominated currency                                                                                                        |
+| `currency`     | String | The currency by which you wish to denominate the transaction                                                                                                |
+| `destination`  | String | The destination of the transaction, which can be in the form of a bitcoin address, an email address, an account id, an application id or an Uphold username |
+| `message`      | String | Transaction details                                                                                                                                         |
+| `securityCode` | String | Credit card security code                                                                                                                                   |
 
 This method returns a **Promise**.
 
