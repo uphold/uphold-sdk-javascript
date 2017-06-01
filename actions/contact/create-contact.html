@@ -1,0 +1,977 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>.createContact() · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="get-contact.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../sdk.html">
+            
+                <a href="../../sdk.html">
+            
+                    
+                    SDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../client.html">
+            
+                <a href="../../client.html">
+            
+                    
+                    Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../storage.html">
+            
+                <a href="../../storage.html">
+            
+                    
+                    Storage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../paginator.html">
+            
+                <a href="../../paginator.html">
+            
+                    
+                    Paginator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../oauthclient.html">
+            
+                <a href="../../oauthclient.html">
+            
+                    
+                    OAuthClient
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../errors.html">
+            
+                <a href="../../errors.html">
+            
+                    
+                    Errors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../actions.html">
+            
+                <a href="../../actions.html">
+            
+                    
+                    Actions
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../account/">
+            
+                <a href="../account/">
+            
+                    
+                    Account
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1.1" data-path="../account/get-account.html">
+            
+                <a href="../account/get-account.html">
+            
+                    
+                    .getAccount()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.1.2" data-path="../account/get-accounts.html">
+            
+                <a href="../account/get-accounts.html">
+            
+                    
+                    .getAccounts()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../card-address/">
+            
+                <a href="../card-address/">
+            
+                    
+                    Card address
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.2.1" data-path="../card-address/create-card-address.html">
+            
+                <a href="../card-address/create-card-address.html">
+            
+                    
+                    .createCardAddress()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.2" data-path="../card-address/get-card-addresses.html">
+            
+                <a href="../card-address/get-card-addresses.html">
+            
+                    
+                    .getCardAddresses()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../card-transaction/">
+            
+                <a href="../card-transaction/">
+            
+                    
+                    Card transaction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.3.1" data-path="../card-transaction/cancel-card-transaction.html">
+            
+                <a href="../card-transaction/cancel-card-transaction.html">
+            
+                    
+                    .cancelCardTransaction()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.2" data-path="../card-transaction/commit-card-transaction.html">
+            
+                <a href="../card-transaction/commit-card-transaction.html">
+            
+                    
+                    .commitCardTransaction()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.3" data-path="../card-transaction/create-card-transaction.html">
+            
+                <a href="../card-transaction/create-card-transaction.html">
+            
+                    
+                    .createCardTransaction()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.4" data-path="../card-transaction/get-card-transactions.html">
+            
+                <a href="../card-transaction/get-card-transactions.html">
+            
+                    
+                    .getCardTransactions()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.5" data-path="../card-transaction/resend-card-transaction.html">
+            
+                <a href="../card-transaction/resend-card-transaction.html">
+            
+                    
+                    .resendCardTransaction()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../card/">
+            
+                <a href="../card/">
+            
+                    
+                    Card
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.4.1" data-path="../card/create-card.html">
+            
+                <a href="../card/create-card.html">
+            
+                    
+                    .createCard()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.2" data-path="../card/get-card.html">
+            
+                <a href="../card/get-card.html">
+            
+                    
+                    .getCard()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.3" data-path="../card/get-cards.html">
+            
+                <a href="../card/get-cards.html">
+            
+                    
+                    .getCards()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4.4" data-path="../card/update-card.html">
+            
+                <a href="../card/update-card.html">
+            
+                    
+                    .updateCard()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Contact
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.8.5.1" data-path="create-contact.html">
+            
+                <a href="create-contact.html">
+            
+                    
+                    .createContact()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.2" data-path="get-contact.html">
+            
+                <a href="get-contact.html">
+            
+                    
+                    .getContact()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.3" data-path="get-contacts.html">
+            
+                <a href="get-contacts.html">
+            
+                    
+                    .getContacts()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5.4" data-path="update-contact.html">
+            
+                <a href="update-contact.html">
+            
+                    
+                    .updateContact()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../document/">
+            
+                <a href="../document/">
+            
+                    
+                    Document
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.6.1" data-path="../document/create-document.html">
+            
+                <a href="../document/create-document.html">
+            
+                    
+                    .createDocument()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6.2" data-path="../document/get-documents.html">
+            
+                <a href="../document/get-documents.html">
+            
+                    
+                    .getDocuments()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="../phone/">
+            
+                <a href="../phone/">
+            
+                    
+                    Phone
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.7.1" data-path="../phone/get-phones.html">
+            
+                <a href="../phone/get-phones.html">
+            
+                    
+                    .getPhones()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="../reserve/">
+            
+                <a href="../reserve/">
+            
+                    
+                    Reserve
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.8.1" data-path="../reserve/get-reserve-transactions.html">
+            
+                <a href="../reserve/get-reserve-transactions.html">
+            
+                    
+                    .getReserveTransactions()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8.2" data-path="../reserve/get-reserve-transaction.html">
+            
+                <a href="../reserve/get-reserve-transaction.html">
+            
+                    
+                    .getReserveTransaction()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8.3" data-path="../reserve/get-reserve-statistics.html">
+            
+                <a href="../reserve/get-reserve-statistics.html">
+            
+                    
+                    .getReserveStatistics()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8.4" data-path="../reserve/get-reserve-ledger.html">
+            
+                <a href="../reserve/get-reserve-ledger.html">
+            
+                    
+                    .getReserveLedger()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="../ticker/">
+            
+                <a href="../ticker/">
+            
+                    
+                    Ticker
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.9.1" data-path="../ticker/get-ticker.html">
+            
+                <a href="../ticker/get-ticker.html">
+            
+                    
+                    .getTicker()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="../transaction/">
+            
+                <a href="../transaction/">
+            
+                    
+                    Transaction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.10.1" data-path="../transaction/get-transaction.html">
+            
+                <a href="../transaction/get-transaction.html">
+            
+                    
+                    .getTransaction()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10.2" data-path="../transaction/get-transactions.html">
+            
+                <a href="../transaction/get-transactions.html">
+            
+                    
+                    .getTransactions()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="../user/">
+            
+                <a href="../user/">
+            
+                    
+                    User
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.11.1" data-path="../user/get-me.html">
+            
+                <a href="../user/get-me.html">
+            
+                    
+                    .getMe()
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11.2" data-path="../user/update-me.html">
+            
+                <a href="../user/update-me.html">
+            
+                    
+                    .updateMe()
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >.createContact()</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="createcontact"><code>.createContact()</code></h1>
+<p>Creates a contact.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Argument</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Required</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>body</code></td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">Request body</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>options</code></td>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">Any options you may want to pass to <a href="../../sdk#api"><code>.api()</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>body</code> argument accepts the following keys:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>addresses</code></td>
+<td style="text-align:left">Array</td>
+<td style="text-align:left">A list of bitcoin addresses</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>company</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The company of affiliation</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>emails</code></td>
+<td style="text-align:left">Array</td>
+<td style="text-align:left">A list of contact email addresses</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>firstName</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">Contact&apos;s first name</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>lastName</code></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">Contact&apos;s last name</td>
+</tr>
+</tbody>
+</table>
+<p>This method returns a <strong>Promise</strong>.</p>
+<p>Get more details on the <a href="https://uphold.com/en/developer/api/documentation/#create-contact" target="_blank">official documentation</a>.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Contact">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="get-contact.html" class="navigation navigation-next " aria-label="Next page: .getContact()">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":".createContact()","level":"1.8.5.1","depth":3,"next":{"title":".getContact()","level":"1.8.5.2","depth":3,"path":"actions/contact/get-contact.md","ref":"actions/contact/get-contact.md","articles":[]},"previous":{"title":"Contact","level":"1.8.5","depth":2,"path":"actions/contact/README.md","ref":"actions/contact/README.md","articles":[{"title":".createContact()","level":"1.8.5.1","depth":3,"path":"actions/contact/create-contact.md","ref":"actions/contact/create-contact.md","articles":[]},{"title":".getContact()","level":"1.8.5.2","depth":3,"path":"actions/contact/get-contact.md","ref":"actions/contact/get-contact.md","articles":[]},{"title":".getContacts()","level":"1.8.5.3","depth":3,"path":"actions/contact/get-contacts.md","ref":"actions/contact/get-contacts.md","articles":[]},{"title":".updateContact()","level":"1.8.5.4","depth":3,"path":"actions/contact/update-contact.md","ref":"actions/contact/update-contact.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"actions/contact/create-contact.md","mtime":"2017-05-18T11:31:31.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-06-01T10:17:17.410Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
