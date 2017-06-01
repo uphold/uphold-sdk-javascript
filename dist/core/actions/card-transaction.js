@@ -50,6 +50,7 @@ function commitCardTransaction(cardId, transactionId, _ref, otp, options) {
 function createCardTransaction(cardId, _ref2, commit, otp, options) {
   let amount = _ref2.amount,
       currency = _ref2.currency,
+      destination = _ref2.destination,
       message = _ref2.message,
       securityCode = _ref2.securityCode;
 
@@ -59,6 +60,7 @@ function createCardTransaction(cardId, _ref2, commit, otp, options) {
         amount: amount,
         currency: currency
       },
+      destination: destination,
       message: message,
       securityCode: securityCode
     },
