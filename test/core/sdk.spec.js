@@ -98,6 +98,20 @@ describe('SDK', () => {
     });
 
     it('should throw an error if access token is empty', done => {
+      sdk.storage.getItem.mockImplementation(key => {
+        if (key === 'uphold.access_token') {
+          return Promise.resolve('');
+        }
+      });
+
+      return sdk.getToken()
+        .catch(e => {
+          expect(e).toBeInstanceOf(AuthorizationRequiredError);
+          done();
+        });
+    });
+
+    it('should throw an error if access token is null', done => {
       sdk.storage.getItem.mockReturnValue(Promise.reject());
 
       return sdk.getToken()
@@ -294,16 +308,20 @@ describe('SDK', () => {
     });
 
     it('should queue authorized requests', () => {
+      sdk.storage = {
+        getItem: jest.fn(() => Promise.resolve('token'))
+      };
+
       return Promise.all([
-        sdk.authorize('code'),
         sdk.api('/foo'),
         sdk.api('/bar'),
         sdk.api('/biz', { authenticate: false })
       ])
       .then(() => {
-        expect(sdk.client.request.mock.calls.length).toBe(4);
-        expect(sdk.client.request.mock.calls[0][0]).toBe('https://api.uphold.com/oauth2/token');
-        expect(sdk.client.request.mock.calls[1][0]).toBe('https://api.uphold.com/v0/biz');
+        expect(sdk.client.request.mock.calls.length).toBe(3);
+        expect(sdk.client.request.mock.calls[0][0]).toBe('https://api.uphold.com/v0/biz');
+        expect(sdk.client.request.mock.calls[1][0]).toBe('https://api.uphold.com/v0/foo');
+        expect(sdk.client.request.mock.calls[2][0]).toBe('https://api.uphold.com/v0/bar');
       });
     });
   });
