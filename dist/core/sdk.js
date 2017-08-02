@@ -95,6 +95,12 @@ class SDK {
 
   getToken() {
     return this.storage.getItem(this.options.accessTokenKey).then(access_token => {
+      if (!access_token) {
+        this.tokenRequestPromise = null;
+
+        return Promise.reject();
+      }
+
       return this.storage.getItem(this.options.refreshTokenKey).then(refresh_token => ({
         access_token: access_token,
         refresh_token: refresh_token

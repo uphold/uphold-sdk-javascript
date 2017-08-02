@@ -1,5 +1,8 @@
 # Changelog
 
+## [v2.0.2](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.0.2) (2017-08-02)
+- Fix `getToken()` method [\#6](https://github.com/uphold/uphold-sdk-javascript/pull/6) ([SandroMachado](https://github.com/SandroMachado))
+
 ## [v2.0.1](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.0.1) (2017-06-01)
 - Add destination argument to createCardTransation action method [\#5](https://github.com/uphold/uphold-sdk-javascript/pull/5) ([ricardogama](https://github.com/ricardogama))
 
