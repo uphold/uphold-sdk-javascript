@@ -450,6 +450,16 @@ describe('SDK', () => {
         });
     });
 
+    it('should pass a stringified body without modification', () => {
+      const newCard = JSON.stringify({ currency: 'foo', label: 'bar' });
+
+      return sdk.api('/biz', { body: newCard, method: 'post' })
+        .then(() => {
+          expect(sdk.client.request.mock.calls.length).toBe(1);
+          expect(sdk.client.request.mock.calls[0][2]).toBe(newCard);
+        });
+    });
+
     it('should return the full response if `raw` option is provided', () => {
       sdk.client.request.mockReturnValue(Promise.resolve('foo'));
 
