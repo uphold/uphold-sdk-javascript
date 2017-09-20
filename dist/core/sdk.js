@@ -68,7 +68,9 @@ class SDK {
     let request;
 
     if (body) {
-      body = JSON.stringify(body);
+      if (typeof body === 'object') {
+        body = JSON.stringify(body);
+      }
       headers['content-type'] = 'application/json';
     }
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## [v2.0.3](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.0.3) (2017-09-20)
+- Allow for passing body that is already stringified [\#7](https://github.com/uphold/uphold-sdk-javascript/pull/7) ([evq](https://github.com/evq))
+
 ## [v2.0.2](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.0.2) (2017-08-02)
 - Fix `getToken()` method [\#6](https://github.com/uphold/uphold-sdk-javascript/pull/6) ([SandroMachado](https://github.com/SandroMachado))
 
