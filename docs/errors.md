@@ -29,6 +29,10 @@ When a request returns with an HTTP status code of `403`.
 
 When a request returns with an HTTP status code of `500`.
 
+## `InvalidScopeError`
+
+When a request returns with an HTTP status code of `400` and the response's body contains an error value of `invalid_scope`.
+
 ## `LoginRequiredError`
 
 Returned when a request that requires authentication is performed without the proper credentials.

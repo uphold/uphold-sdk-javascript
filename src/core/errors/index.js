@@ -2,6 +2,7 @@ import { AuthorizationRequiredError } from './authorization-required';
 import { BaseError } from './base';
 import { ForbiddenError } from './forbidden';
 import { InternalServerError } from './internal-server';
+import { InvalidScopeError } from './invalid-scope';
 import { NotFoundError } from './not-found';
 import { OTPRequiredError } from './otp-required';
 import { RateLimitError } from './rate-limit';
@@ -15,6 +16,7 @@ export {
   BaseError,
   ForbiddenError,
   InternalServerError,
+  InvalidScopeError,
   NotFoundError,
   OTPRequiredError,
   RateLimitError,
@@ -28,6 +30,7 @@ export default [
   AuthorizationRequiredError,
   ForbiddenError,
   InternalServerError,
+  InvalidScopeError,
   NotFoundError,
   OTPRequiredError,
   RateLimitError,
