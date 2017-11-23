@@ -1,5 +1,8 @@
 # Changelog
 
+## [v2.0.4](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.0.4) (2017-11-23)
+- Add support to invalid scope error [\#9](https://github.com/uphold/uphold-sdk-javascript/pull/9) ([SandroMachado](https://github.com/SandroMachado))
+
 ## [v2.0.3](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.0.3) (2017-09-20)
 - Allow for passing body that is already stringified [\#7](https://github.com/uphold/uphold-sdk-javascript/pull/7) ([evq](https://github.com/evq))
 
