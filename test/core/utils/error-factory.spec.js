@@ -1,6 +1,7 @@
 import {
   ForbiddenError,
   InternalServerError,
+  InvalidScopeError,
   NotFoundError,
   OTPRequiredError,
   RateLimitError,
@@ -19,6 +20,10 @@ describe('ErrorFactory', () => {
 
     it('should create an `InternalServerError`', () => {
       expect(createError({ status: 500 })).toBeInstanceOf(InternalServerError);
+    });
+
+    it('should create an `InvalidScopeError`', () => {
+      expect(createError({ body: { error: 'invalid_scope' }, status: 400 })).toBeInstanceOf(InvalidScopeError);
     });
 
     it('should create a `NotFoundError`', () => {
