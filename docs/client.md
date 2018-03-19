@@ -10,7 +10,7 @@ Pseudo-implementation of an alternative client:
 import SDK, { Client } from '@uphold/uphold-sdk-javascript';
 
 class AlternativeClient extends Client {
-  request(url, method, body, customHeaders = {}) {
+  request(url, method, body, customHeaders = {}, options) {
     // Make your own implementation, but make sure it returns a Promise that resolves
     // or rejects an object with the schema demonstrated at the bottom of this section.
   }
@@ -53,6 +53,7 @@ This method is responsible for performing HTTP requests to Uphold's API.
 | `method`  | String | Yes      | HTTP method       |
 | `body`    | Object | Yes      | Request body      |
 | `headers` | Object | No       | Request headers   |
+| `options` | Object | No       | Request options   |
 
 This method must resolve an object with the following schema so that pagination and errors can be handled in a proper fashion:
 

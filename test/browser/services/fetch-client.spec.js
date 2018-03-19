@@ -10,6 +10,15 @@ describe('FetchClient', () => {
   });
 
   describe('request()', () => {
+    it('should set `get` as default method if none is provided', () => {
+      fetchMock.mock('foo', {});
+
+      return client.request('foo')
+        .then(() => {
+          expect(fetchMock.lastOptions().method).toEqual('GET');
+        });
+    });
+
     it('should send a `User-Agent` header', () => {
       fetchMock.mock('foo', {});
 

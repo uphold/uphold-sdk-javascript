@@ -2,8 +2,9 @@ import { Client, createError } from '../../core';
 import isHtml from 'is-html';
 
 export default class FetchClient extends Client {
-  request(url, method = 'get', body, headers = {}) {
-    const options = {
+  request(url, method = 'get', body, headers = {}, options = {}) { // eslint-disable-line max-params
+    const requestOptions = {
+      ...options,
       body,
       cache: 'no-cache',
       credentials: 'omit',
@@ -15,7 +16,7 @@ export default class FetchClient extends Client {
       mode: 'cors'
     };
 
-    return fetch(url, options)
+    return fetch(url, requestOptions)
       .then(response => {
         if (!response.ok) {
           return Promise.reject(response);
