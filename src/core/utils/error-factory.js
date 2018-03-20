@@ -1,9 +1,9 @@
 import errors from '../errors';
 
-export function createError(response) {
+export function createError(error, response) {
   for (const SDKError of errors) {
-    if (SDKError.hasError && SDKError.hasError(response)) {
-      return new SDKError(response);
+    if (SDKError.hasError && SDKError.hasError(error)) {
+      return new SDKError({ ...error, response });
     }
   }
 }

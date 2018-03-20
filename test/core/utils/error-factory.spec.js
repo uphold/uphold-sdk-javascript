@@ -53,5 +53,12 @@ describe('ErrorFactory', () => {
     it('should create a `ValidationFailedError`', () => {
       expect(createError({ body: { code: 'validation_failed' } })).toBeInstanceOf(ValidationFailedError);
     });
+
+    it('should create add an `response` attribute when provided', () => {
+      const error = createError({ status: 403 }, { foo: 'bar' });
+
+      expect(error).toBeInstanceOf(ForbiddenError);
+      expect(error.response).toEqual({ foo: 'bar' });
+    });
   });
 });
