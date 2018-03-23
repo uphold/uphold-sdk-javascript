@@ -16,7 +16,7 @@ export default class RequestClient extends Client {
       url
     })
       .then(response => this._formatResponse(response))
-      .catch(response => Promise.reject(response instanceof RequestError ? response : createError(this._formatResponse(response.response))));
+      .catch(response => Promise.reject(response instanceof RequestError ? response : createError(this._formatResponse(response.response), response)));
   }
 
   _formatResponse({ body, headers, statusCode }) {

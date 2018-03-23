@@ -27,12 +27,12 @@ export default class FetchClient extends Client {
       })
       .catch(error => {
         if (!error.json) {
-          return Promise.reject(createError(this._formatResponse({ error, status: -1 })));
+          return Promise.reject(createError(this._formatResponse({ error, status: -1 }), error));
         }
 
         return error.text()
           .then(this._parseText)
-          .then(body => Promise.reject(createError(this._formatResponse(error, body))));
+          .then(body => Promise.reject(createError(this._formatResponse(error, body), error)));
       });
   }
 
