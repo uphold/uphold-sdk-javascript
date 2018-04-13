@@ -1,5 +1,10 @@
 # Changelog
 
+## [v2.1.0](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.1.0) (2018-04-13)
+- Add ability to pass extra options on each request [\#12](https://github.com/uphold/uphold-sdk-javascript/pull/12) ([pgom](https://github.com/pgom))
+- Add entire response object on each request response [\#14](https://github.com/uphold/uphold-sdk-javascript/pull/14) ([pgom](https://github.com/pgom))
+- Update build script [\#13](https://github.com/uphold/uphold-sdk-javascript/pull/13) ([pgom](https://github.com/pgom))
+
 ## [v2.0.4](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.0.4) (2017-11-23)
 - Add support to invalid scope error [\#9](https://github.com/uphold/uphold-sdk-javascript/pull/9) ([SandroMachado](https://github.com/SandroMachado))
 

@@ -19,15 +19,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 class RequestClient extends _core.Client {
   request(url, method, body) {
     let headers = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-
-    return (0, _requestPromise2.default)({
+    let options = arguments[4];
+    // eslint-disable-line max-params
+    return (0, _requestPromise2.default)(_extends({}, options, {
       body: body,
       headers: _extends({}, this.defaultHeaders, headers),
       method: method,
       resolveWithFullResponse: true,
       strictSSL: false,
       url: url
-    }).then(response => this._formatResponse(response)).catch(response => Promise.reject(response instanceof _errors.RequestError ? response : (0, _core.createError)(this._formatResponse(response.response))));
+    })).then(response => this._formatResponse(response)).catch(response => Promise.reject(response instanceof _errors.RequestError ? response : (0, _core.createError)(this._formatResponse(response.response), response)));
   }
 
   _formatResponse(_ref) {

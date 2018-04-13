@@ -49,19 +49,19 @@ class SDK {
   }
 
   api(uri) {
-    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-        _ref$authenticate = _ref.authenticate;
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var _options$authenticate = options.authenticate;
+    const authenticate = _options$authenticate === undefined ? true : _options$authenticate;
+    var _options$headers = options.headers;
+    const headers = _options$headers === undefined ? {} : _options$headers;
+    var _options$method = options.method;
+    const method = _options$method === undefined ? 'get' : _options$method,
+          queryParams = options.queryParams,
+          raw = options.raw;
+    var _options$version = options.version;
+    const version = _options$version === undefined ? this.options.version : _options$version;
+    let body = options.body;
 
-    let authenticate = _ref$authenticate === undefined ? true : _ref$authenticate,
-        body = _ref.body;
-    var _ref$headers = _ref.headers;
-    let headers = _ref$headers === undefined ? {} : _ref$headers;
-    var _ref$method = _ref.method;
-    let method = _ref$method === undefined ? 'get' : _ref$method,
-        queryParams = _ref.queryParams,
-        raw = _ref.raw;
-    var _ref$version = _ref.version;
-    let version = _ref$version === undefined ? this.options.version : _ref$version;
 
     const url = (0, _utils.buildUrl)(uri, this.options.baseUrl, version, queryParams);
 
@@ -76,15 +76,15 @@ class SDK {
 
     if (authenticate && !headers.authorization) {
       request = this.getToken().then(tokens => {
-        return this.client.request(url, method, body, _extends({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token), headers));
+        return this.client.request(url, method, body, _extends({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token), headers), options);
       });
     } else {
-      request = this.client.request(url, method, body, headers);
+      request = this.client.request(url, method, body, headers, options);
     }
 
     return request.then(data => {
       return raw ? data : data.body;
-    }).catch(this._refreshToken(url, method, body, headers));
+    }).catch(this._refreshToken(url, method, body, headers, options));
   }
 
   authorize(code) {
@@ -149,18 +149,19 @@ class SDK {
     }).then(() => token);
   }
 
-  _authenticationRequest(_ref2) {
-    let body = _ref2.body,
-        headers = _ref2.headers,
-        url = _ref2.url;
+  _authenticationRequest(_ref) {
+    let body = _ref.body,
+        headers = _ref.headers,
+        url = _ref.url;
 
-    return this.client.request(url, 'post', body, headers).then((_ref3) => {
-      let body = _ref3.body;
+    return this.client.request(url, 'post', body, headers).then((_ref2) => {
+      let body = _ref2.body;
       return this.setToken(body);
     });
   }
 
-  _refreshToken(url, method, body, headers) {
+  _refreshToken(url, method, body, headers, options) {
+    // eslint-disable-line max-params
     return response => {
       if (!response || !response.body || response.body.error !== 'invalid_token') {
         return Promise.reject(response);
@@ -171,7 +172,7 @@ class SDK {
       }
 
       return this.refreshRequestPromise.then(tokens => {
-        return this.client.request(url, method, body, _extends({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token), headers)).then(data => data.body);
+        return this.client.request(url, method, body, _extends({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token), headers), options).then(data => data.body);
       });
     };
   }
