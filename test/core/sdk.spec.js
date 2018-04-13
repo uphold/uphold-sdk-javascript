@@ -288,6 +288,7 @@ describe('SDK', () => {
       return sdk.authorize('code')
         .then(() => {
           expect(sdk.client.request.mock.calls.length).toBe(1);
+          expect(sdk.client.request.mock.calls[0][1]).toBe('post');
           expect(sdk.client.request.mock.calls[0][2]).toBe('client_id=foo&client_secret=bar&code=code&grant_type=authorization_code');
           expect(sdk.client.request.mock.calls[0][3]).toEqual({ 'content-type': 'application/x-www-form-urlencoded' });
         });
@@ -394,12 +395,13 @@ describe('SDK', () => {
               'https://api.uphold.com/v0/foo',
               'get',
               undefined,
-              { authorization: 'Bearer token' }
+              { authorization: 'Bearer token' },
+              {}
             );
           });
       });
 
-      it('should not build the `authorization` header if provided', () => {
+      it('should not build the `authorization` header if value is already provided', () => {
         return sdk.api('/foo', { headers: { authorization: 'foo' } })
           .then(() => {
             expect(sdk.storage.getItem).not.toBeCalled();
@@ -407,7 +409,8 @@ describe('SDK', () => {
               'https://api.uphold.com/v0/foo',
               'get',
               undefined,
-              { authorization: 'foo' }
+              { authorization: 'foo' },
+              { headers: { authorization: 'foo' } }
             );
           });
       });
@@ -434,7 +437,8 @@ describe('SDK', () => {
               'https://api.uphold.com/v0/foo',
               'get',
               undefined,
-              {}
+              {},
+              { authenticate: false }
             );
           });
       });
@@ -471,31 +475,38 @@ describe('SDK', () => {
 
     it('should add custom headers', () => {
       sdk.client.request.mockReturnValue(Promise.resolve('foo'));
+      const options = { authenticate: false, headers: { foo: 'bar' } };
 
-      return sdk.api('/biz', { authenticate: false, headers: { foo: 'bar' } })
+      return sdk.api('/biz', options)
         .then(() => {
-          expect(sdk.client.request).toBeCalledWith('https://api.uphold.com/v0/biz', 'get', undefined, { foo: 'bar' });
+          expect(sdk.client.request).toBeCalledWith('https://api.uphold.com/v0/biz', 'get', undefined, { foo: 'bar' }, options);
         });
     });
 
     it('should build the request url with configured version if `version` is not provided', () => {
-      return sdk.api('/foo', { authenticate: false })
+      const options = { authenticate: false };
+
+      return sdk.api('/foo', options)
         .then(() => {
-          expect(sdk.client.request).toBeCalledWith('https://api.uphold.com/v0/foo', 'get', undefined, {});
+          expect(sdk.client.request).toBeCalledWith('https://api.uphold.com/v0/foo', 'get', undefined, {}, options);
         });
     });
 
     it('should build the request url with given `version`', () => {
-      return sdk.api('/foo', { authenticate: false, version: 'bar' })
+      const options = { authenticate: false, version: 'bar' };
+
+      return sdk.api('/foo', options)
         .then(() => {
-          expect(sdk.client.request).toBeCalledWith('https://api.uphold.com/bar/foo', 'get', undefined, {});
+          expect(sdk.client.request).toBeCalledWith('https://api.uphold.com/bar/foo', 'get', undefined, {}, options);
         });
     });
 
     it('should build the request url with no version if `version` is given as `false`', () => {
-      return sdk.api('/foo', { authenticate: false, version: false })
+      const options = { authenticate: false, version: false };
+
+      return sdk.api('/foo', options)
         .then(() => {
-          expect(sdk.client.request).toBeCalledWith('https://api.uphold.com/foo', 'get', undefined, {});
+          expect(sdk.client.request).toBeCalledWith('https://api.uphold.com/foo', 'get', undefined, {}, options);
         });
     });
   });

@@ -33,7 +33,10 @@ export default class SDK {
     this.oauthClient = new OAuthClient(this.options);
   }
 
-  api(uri, { authenticate = true, body, headers = {}, method = 'get', queryParams, raw, version = this.options.version } = {}) {
+  api(uri, options = {}) {
+    const { authenticate = true, headers = {}, method = 'get', queryParams, raw, version = this.options.version } = options;
+    let { body } = options;
+
     const url = buildUrl(uri, this.options.baseUrl, version, queryParams);
 
     let request;
@@ -50,15 +53,15 @@ export default class SDK {
         return this.client.request(url, method, body, {
           ...buildBearerAuthorizationHeader(tokens.access_token),
           ...headers
-        });
+        }, options);
       });
     } else {
-      request = this.client.request(url, method, body, headers);
+      request = this.client.request(url, method, body, headers, options);
     }
 
     return request
       .then(data => { return raw ? data : data.body; })
-      .catch(this._refreshToken(url, method, body, headers));
+      .catch(this._refreshToken(url, method, body, headers, options));
   }
 
   authorize(code) {
@@ -134,7 +137,7 @@ export default class SDK {
       .then(({ body }) => this.setToken(body));
   }
 
-  _refreshToken(url, method, body, headers) {
+  _refreshToken(url, method, body, headers, options) { // eslint-disable-line max-params
     return response => {
       if (!response || !response.body || response.body.error !== 'invalid_token') {
         return Promise.reject(response);
@@ -149,7 +152,7 @@ export default class SDK {
           return this.client.request(url, method, body, {
             ...buildBearerAuthorizationHeader(tokens.access_token),
             ...headers
-          })
+          }, options)
             .then(data => data.body);
         });
     };
