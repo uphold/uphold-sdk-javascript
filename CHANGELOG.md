@@ -1,5 +1,8 @@
 # Changelog
 
+## [v2.2.0](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.2.0) (2018-05-09)
+- Update cookie definition to use root path [\#15](https://github.com/uphold/uphold-sdk-javascript/pull/15) ([pgom](https://github.com/pgom))
+
 ## [v2.1.0](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.1.0) (2018-04-13)
 - Add ability to pass extra options on each request [\#12](https://github.com/uphold/uphold-sdk-javascript/pull/12) ([pgom](https://github.com/pgom))
 - Add entire response object on each request response [\#14](https://github.com/uphold/uphold-sdk-javascript/pull/14) ([pgom](https://github.com/pgom))
