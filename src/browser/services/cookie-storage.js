@@ -54,6 +54,6 @@ export default class CookieStorage {
   }
 
   _setCookie(data) {
-    document.cookie = `${this.storageName}=${encodeURIComponent(JSON.stringify(data))}`;
+    document.cookie = `${this.storageName}=${encodeURIComponent(JSON.stringify(data))};path=/`;
   }
 }
