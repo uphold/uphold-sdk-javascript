@@ -34,7 +34,7 @@
     "content-range": "1.1.0",
     "lodash.merge": "4.6.0",
     "qs": "6.4.0",
-    "request": "2.81.0",
+    "request": "2.86.0",
     "request-promise": "4.2.0",
     "standard-error": "1.1.0",
     "text-encoding": "0.6.4"
