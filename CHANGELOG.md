@@ -1,5 +1,8 @@
 # Changelog
 
+## [v2.2.1](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.2.1) (2018-05-16)
+- bump request version [\#16](https://github.com/uphold/uphold-sdk-javascript/pull/16) ([evq](https://github.com/evq))
+
 ## [v2.2.0](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.2.0) (2018-05-09)
 - Update cookie definition to use root path [\#15](https://github.com/uphold/uphold-sdk-javascript/pull/15) ([pgom](https://github.com/pgom))
 
