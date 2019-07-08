@@ -318,12 +318,12 @@ describe('SDK', () => {
         sdk.api('/bar'),
         sdk.api('/biz', { authenticate: false })
       ])
-      .then(() => {
-        expect(sdk.client.request.mock.calls.length).toBe(3);
-        expect(sdk.client.request.mock.calls[0][0]).toBe('https://api.uphold.com/v0/biz');
-        expect(sdk.client.request.mock.calls[1][0]).toBe('https://api.uphold.com/v0/foo');
-        expect(sdk.client.request.mock.calls[2][0]).toBe('https://api.uphold.com/v0/bar');
-      });
+        .then(() => {
+          expect(sdk.client.request.mock.calls.length).toBe(3);
+          expect(sdk.client.request.mock.calls[0][0]).toBe('https://api.uphold.com/v0/biz');
+          expect(sdk.client.request.mock.calls[1][0]).toBe('https://api.uphold.com/v0/foo');
+          expect(sdk.client.request.mock.calls[2][0]).toBe('https://api.uphold.com/v0/bar');
+        });
     });
   });
 
