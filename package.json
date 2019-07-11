@@ -32,7 +32,7 @@
   "dependencies": {
     "base64-js": "1.2.0",
     "content-range": "1.1.0",
-    "lodash.merge": "4.6.0",
+    "lodash.merge": "4.6.2",
     "qs": "6.4.0",
     "request": "2.88.0",
     "request-promise": "4.2.0",
