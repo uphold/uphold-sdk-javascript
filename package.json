@@ -40,7 +40,7 @@
     "text-encoding": "0.6.4"
   },
   "devDependencies": {
-    "@uphold/github-changelog-generator": "0.4.1",
+    "@uphold/github-changelog-generator": "^0.8.1",
     "babel-cli": "6.24.1",
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.3",
@@ -54,7 +54,7 @@
     "eslint-config-seegno": "9.0.0",
     "eslint-plugin-babel": "4.1.1",
     "fetch-mock": "5.10.0",
-    "gitbook-cli": "2.3.0",
+    "gitbook-cli": "^2.3.2",
     "html-tags": "1.1.1",
     "is-html": "1.1.0",
     "isomorphic-fetch": "2.2.1",
@@ -63,6 +63,13 @@
     "nock": "9.0.13",
     "pre-commit": "1.2.2",
     "webpack": "2.5.0"
+  },
+  "resolutions": {
+    "braces": "^2.3.2",
+    "hoek": "^4.2.0",
+    "lodash": "^4.17.12",
+    "ssri": "^5.2.2",
+    "tunnel-agent": "^0.6.0"
   },
   "engines": {
     "node": ">=4"
