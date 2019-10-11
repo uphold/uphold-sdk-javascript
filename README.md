@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/uphold/uphold-sdk-javascript">
-    <img width="188" src="https://uphold.com/uploads/logo.png"/>
+    <img src="docs/images/favicon.ico"/>
   </a>
 </p>
 
