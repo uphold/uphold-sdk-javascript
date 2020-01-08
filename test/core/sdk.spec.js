@@ -252,17 +252,19 @@ describe('SDK', () => {
       sdk.storage = { setItem: jest.fn(() => Promise.resolve()) };
     });
 
-    it('should store both access and refresh tokens', () => {
-      return sdk.setToken({ access_token: 'foo', refresh_token: 'bar' })
+    it('should store both access and refresh tokens, otp-token header and scope', () => {
+      return sdk.setToken({ access_token: 'foo', refresh_token: 'bar', scope: 'read' }, { 'otp-token': 'required' })
         .then(() => {
           expect(sdk.storage.setItem.mock.calls).toEqual([
             ['uphold.access_token', 'foo'],
+            ['uphold.scope', 'read'],
+            ['uphold.otp_token_status', 'required'],
             ['uphold.refresh_token', 'bar']
           ]);
         });
     });
 
-    it('should not set refresh_token if not provided', () => {
+    it('should not set refresh_token, scope or otp-token header if not provided', () => {
       return sdk.setToken({ access_token: 'foo' })
         .then(() => {
           expect(sdk.storage.setItem).toBeCalledWith('uphold.access_token', 'foo');
