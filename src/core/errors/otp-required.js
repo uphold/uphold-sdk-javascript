@@ -1,4 +1,5 @@
 import { BaseError } from './base';
+import { includes } from 'lodash';
 
 export class OTPRequiredError extends BaseError {
   static hasError({ headers } = {}) {
@@ -6,7 +7,7 @@ export class OTPRequiredError extends BaseError {
       return false;
     }
 
-    return headers['otp-token'].toUpperCase() === 'REQUIRED';
+    return includes(['OPTIONAL', 'REQUIRED'], headers['otp-token'].toUpperCase());
   }
 
   constructor() {

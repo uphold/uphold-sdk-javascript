@@ -2,6 +2,7 @@ import * as actions from './actions';
 import { AuthorizationRequiredError, UnauthorizedError } from './errors';
 import { OAuthClient, Paginator } from './services';
 import { buildBearerAuthorizationHeader, buildUrl } from './utils';
+import { get } from 'lodash';
 
 export default class SDK {
   constructor(options) {
@@ -21,7 +22,9 @@ export default class SDK {
       accessTokenKey: 'uphold.access_token',
       baseUrl: 'https://api.uphold.com',
       itemsPerPage: 10,
+      otpTokenStatus: 'uphold.otp_token_status',
       refreshTokenKey: 'uphold.refresh_token',
+      scope: 'uphold.scope',
       version: 'v0'
     };
 
@@ -122,11 +125,14 @@ export default class SDK {
     ]);
   }
 
-  setToken(token) {
+  setToken(token, headers = {}) {
     return this.storage.setItem(this.options.accessTokenKey, token.access_token)
       .then(() => {
+        this.storage.setItem(this.options.scope, get(token, 'scope', ''));
+        this.storage.setItem(this.options.otpTokenStatus, get(headers, 'otp-token', ''));
+
         if (token.refresh_token) {
-          return this.storage.setItem(this.options.refreshTokenKey, token.refresh_token);
+          this.storage.setItem(this.options.refreshTokenKey, token.refresh_token);
         }
       })
       .then(() => token);
@@ -134,7 +140,7 @@ export default class SDK {
 
   _authenticationRequest({ body, headers, url }) {
     return this.client.request(url, 'post', body, headers)
-      .then(({ body }) => this.setToken(body));
+      .then(({ body, headers }) => this.setToken(body, headers));
   }
 
   _refreshToken(url, method, body, headers, options) { // eslint-disable-line max-params
