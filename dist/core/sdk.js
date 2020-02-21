@@ -16,6 +16,8 @@ var _services = require('./services');
 
 var _utils = require('./utils');
 
+var _lodash = require('lodash');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 class SDK {
@@ -36,7 +38,9 @@ class SDK {
       accessTokenKey: 'uphold.access_token',
       baseUrl: 'https://api.uphold.com',
       itemsPerPage: 10,
+      otpTokenStatus: 'uphold.otp_token_status',
       refreshTokenKey: 'uphold.refresh_token',
+      scope: 'uphold.scope',
       version: 'v0'
     };
 
@@ -142,9 +146,14 @@ class SDK {
   }
 
   setToken(token) {
+    let headers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
     return this.storage.setItem(this.options.accessTokenKey, token.access_token).then(() => {
+      this.storage.setItem(this.options.scope, (0, _lodash.get)(token, 'scope', ''));
+      this.storage.setItem(this.options.otpTokenStatus, (0, _lodash.get)(headers, 'otp-token', ''));
+
       if (token.refresh_token) {
-        return this.storage.setItem(this.options.refreshTokenKey, token.refresh_token);
+        this.storage.setItem(this.options.refreshTokenKey, token.refresh_token);
       }
     }).then(() => token);
   }
@@ -155,8 +164,9 @@ class SDK {
         url = _ref.url;
 
     return this.client.request(url, 'post', body, headers).then((_ref2) => {
-      let body = _ref2.body;
-      return this.setToken(body);
+      let body = _ref2.body,
+          headers = _ref2.headers;
+      return this.setToken(body, headers);
     });
   }
 

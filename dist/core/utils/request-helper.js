@@ -47,7 +47,7 @@ function normalizeURI(uri) {
 
 function buildUrl(uri, baseUrl, version, queryParams) {
   // Check if the `uri` is actually an url.
-  if (new RegExp(/^http(s?)\:\/\//).test(uri)) {
+  if (new RegExp(/^http(s?):\/\//).test(uri)) {
     return uri;
   }
 

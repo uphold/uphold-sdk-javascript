@@ -7,6 +7,8 @@ exports.OTPRequiredError = undefined;
 
 var _base = require('./base');
 
+var _lodash = require('lodash');
+
 class OTPRequiredError extends _base.BaseError {
   static hasError() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -17,7 +19,7 @@ class OTPRequiredError extends _base.BaseError {
       return false;
     }
 
-    return headers['otp-token'].toUpperCase() === 'REQUIRED';
+    return (0, _lodash.includes)(['OPTIONAL', 'REQUIRED'], headers['otp-token'].toUpperCase());
   }
 
   constructor() {
