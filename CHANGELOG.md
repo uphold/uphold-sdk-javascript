@@ -1,5 +1,15 @@
 # Changelog
 
+## [v2.4.0](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.0) (2020-02-21)
+- Add scope and otp header to storage [\#30](https://github.com/uphold/uphold-sdk-javascript/pull/30) ([asoraiamartins](https://github.com/asoraiamartins))
+- Update favicon and logo on `README` [\#27](https://github.com/uphold/uphold-sdk-javascript/pull/27) ([7patricia](https://github.com/7patricia))
+- Fixing dependency vulnerabilities [\#26](https://github.com/uphold/uphold-sdk-javascript/pull/26) ([ryanml](https://github.com/ryanml))
+- Update `babel-plugin-istanbul` to version 5.1.4 [\#24](https://github.com/uphold/uphold-sdk-javascript/pull/24) ([SandroMachado](https://github.com/SandroMachado))
+- bump lodash.merge [\#25](https://github.com/uphold/uphold-sdk-javascript/pull/25) ([evq](https://github.com/evq))
+- Update ESLint to version 6.0.1 [\#23](https://github.com/uphold/uphold-sdk-javascript/pull/23) ([SandroMachado](https://github.com/SandroMachado))
+- Bump `Request` to version 2.88.0 [\#21](https://github.com/uphold/uphold-sdk-javascript/pull/21) ([SandroMachado](https://github.com/SandroMachado))
+- Update travis node versions [\#22](https://github.com/uphold/uphold-sdk-javascript/pull/22) ([SandroMachado](https://github.com/SandroMachado))
+
 ## [v2.3.0](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.3.0) (2018-05-22)
 - Add origin to create card transaction [\#17](https://github.com/uphold/uphold-sdk-javascript/pull/17) ([pgom](https://github.com/pgom))
 
