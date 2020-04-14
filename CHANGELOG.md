@@ -1,5 +1,8 @@
 # Changelog
 
+## [v2.4.1](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.1) (2020-04-14)
+- Remove user-agent default header [\#31](https://github.com/uphold/uphold-sdk-javascript/pull/31) ([pgom](https://github.com/pgom))
+
 ## [v2.4.0](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.0) (2020-02-21)
 - Add scope and otp header to storage [\#30](https://github.com/uphold/uphold-sdk-javascript/pull/30) ([asoraiamartins](https://github.com/asoraiamartins))
 - Update favicon and logo on `README` [\#27](https://github.com/uphold/uphold-sdk-javascript/pull/27) ([7patricia](https://github.com/7patricia))
