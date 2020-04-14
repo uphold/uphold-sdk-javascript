@@ -1,5 +1,4 @@
 import { FetchClient, NotFoundError, UnavailableError } from '../../../src/browser';
-import { version } from '../../../package.json';
 import fetchMock from 'fetch-mock';
 
 describe('FetchClient', () => {
@@ -16,15 +15,6 @@ describe('FetchClient', () => {
       return client.request('foo')
         .then(() => {
           expect(fetchMock.lastOptions().method).toEqual('GET');
-        });
-    });
-
-    it('should send a `User-Agent` header', () => {
-      fetchMock.mock('foo', {});
-
-      return client.request('foo')
-        .then(() => {
-          expect(fetchMock.lastOptions().headers.get('user-agent')).toBe(`@uphold/uphold-sdk-javascript/${version}`);
         });
     });
 
