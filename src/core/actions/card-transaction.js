@@ -28,7 +28,7 @@ export function commitCardTransaction(cardId, transactionId, { message, security
 }
 
 // eslint-disable-next-line max-params
-export function createCardTransaction(cardId, { amount, currency, destination, origin, message, securityCode }, commit, otp, options) {
+export function createCardTransaction(cardId, { amount, currency, destination, message, origin, reference, securityCode }, commit, otp, options) {
   options = merge({
     body: {
       denomination: {
@@ -38,6 +38,7 @@ export function createCardTransaction(cardId, { amount, currency, destination, o
       destination,
       message,
       origin,
+      reference,
       securityCode
     },
     method: 'post'
