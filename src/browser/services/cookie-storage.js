@@ -1,4 +1,5 @@
 export default class CookieStorage {
+
   constructor(storageName = '_token') {
     this.cache = {};
     this.storageName = storageName;
@@ -56,4 +57,5 @@ export default class CookieStorage {
   _setCookie(data) {
     document.cookie = `${this.storageName}=${encodeURIComponent(JSON.stringify(data))};path=/`;
   }
+
 }

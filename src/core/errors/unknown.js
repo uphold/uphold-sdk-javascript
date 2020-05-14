@@ -1,6 +1,7 @@
 import { BaseError } from './base';
 
 export class UnknownError extends BaseError {
+
   static hasError() {
     return true;
   }
@@ -8,4 +9,5 @@ export class UnknownError extends BaseError {
   constructor() {
     super('unknown', ...arguments);
   }
+
 }

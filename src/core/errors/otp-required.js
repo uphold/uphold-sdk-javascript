@@ -1,7 +1,8 @@
 import { BaseError } from './base';
-import { includes } from 'lodash';
+import includes from 'lodash/includes';
 
 export class OTPRequiredError extends BaseError {
+
   static hasError({ headers } = {}) {
     if (!headers || !headers['otp-token']) {
       return false;
@@ -13,4 +14,5 @@ export class OTPRequiredError extends BaseError {
   constructor() {
     super('otp_required', ...arguments);
   }
+
 }

@@ -1,4 +1,15 @@
 {
-  "plugins": ["transform-object-rest-spread"],
-  "presets": ["es2015-node"]
+  "plugins": ["lodash"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "bugfixes": true,
+        "corejs": { "version": 3, "proposals": true },
+        "loose": true,
+        "targets": { "esmodules": true },
+        "useBuiltIns": "entry"
+      }
+    ]
+  ]
 }

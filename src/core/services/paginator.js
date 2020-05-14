@@ -1,7 +1,8 @@
+import merge from 'lodash/merge';
 import contentRange from 'content-range';
-import merge from 'lodash.merge';
 
 export default class Paginator {
+
   constructor(sdk, uri, itemsPerPage, options) {
     this.itemsPerPage = itemsPerPage;
     this.options = options;
@@ -43,4 +44,5 @@ export default class Paginator {
   hasPreviousPage() {
     return !!this.currentPage && this.currentPage > 1;
   }
+
 }

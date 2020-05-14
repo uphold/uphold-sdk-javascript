@@ -1,6 +1,7 @@
 import { BaseError } from './base';
 
 export class ValidationFailedError extends BaseError {
+
   static hasError({ body } = {}) {
     return body && body.code === 'validation_failed';
   }
@@ -8,4 +9,5 @@ export class ValidationFailedError extends BaseError {
   constructor() {
     super('validation_failed', ...arguments);
   }
+
 }

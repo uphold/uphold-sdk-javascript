@@ -4,9 +4,7 @@ import fetchMock from 'fetch-mock';
 describe('FetchClient', () => {
   const client = new FetchClient();
 
-  beforeEach(() => {
-    fetchMock.restore();
-  });
+  beforeEach(() => fetchMock.restore());
 
   describe('request()', () => {
     it('should set `get` as default method if none is provided', () => {

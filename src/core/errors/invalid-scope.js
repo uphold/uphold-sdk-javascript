@@ -1,6 +1,7 @@
 import { BaseError } from './base';
 
 export class InvalidScopeError extends BaseError {
+
   static hasError({ body, status } = {}) {
     if (!status || (!body || !body.error)) {
       return false;
@@ -16,4 +17,5 @@ export class InvalidScopeError extends BaseError {
   constructor() {
     super('invalid_scope', ...arguments);
   }
+
 }

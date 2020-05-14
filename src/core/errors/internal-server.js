@@ -1,6 +1,7 @@
 import { BaseError } from './base';
 
 export class InternalServerError extends BaseError {
+
   static hasError({ status } = {}) {
     return status === 500;
   }
@@ -8,4 +9,5 @@ export class InternalServerError extends BaseError {
   constructor() {
     super('internal_server', ...arguments);
   }
+
 }
