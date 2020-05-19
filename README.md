@@ -10,6 +10,9 @@
   <a href="https://travis-ci.org/uphold/uphold-sdk-javascript">
     <img src="https://img.shields.io/travis/uphold/uphold-sdk-javascript/master.svg?style=flat-square">
   </a>
+  <a href="/dist/browser/uphold-sdk-javascript.js">
+    <img src="https://img.shields.io/github/size/uphold/uphold-sdk-javascript/dist/browser/uphold-sdk-javascript.js?style=flat-square"/>
+  </a>
   <a href="https://www.npmjs.com/package/@uphold/uphold-sdk-javascript">
     <img src="https://img.shields.io/npm/v/@uphold/uphold-sdk-javascript.svg?style=flat-square"/>
   </a>
