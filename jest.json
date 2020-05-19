@@ -12,7 +12,7 @@
       "statements": 100
     }
   },
-  "setupTestFrameworkScriptFile": "./test/index.js",
+  "setupFilesAfterEnv": ["./test/index.js"],
   "testRegex": "test/.*\\.spec.js",
   "verbose": true
 }

@@ -1,6 +1,7 @@
 import { BaseError } from './base';
 
 export class RateLimitError extends BaseError {
+
   static hasError({ status } = {}) {
     return status === 429;
   }
@@ -30,4 +31,5 @@ export class RateLimitError extends BaseError {
       reset: this.reset
     };
   }
+
 }

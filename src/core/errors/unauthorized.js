@@ -1,6 +1,7 @@
 import { BaseError } from './base';
 
 export class UnauthorizedError extends BaseError {
+
   static hasError({ body, status } = {}) {
     if (!status || (!body || !body.error)) {
       return false;
@@ -20,4 +21,5 @@ export class UnauthorizedError extends BaseError {
   constructor() {
     super('unauthorized', ...arguments);
   }
+
 }

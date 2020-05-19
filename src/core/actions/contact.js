@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 
 export function createContact({ addresses, company, emails, firstName, lastName }, options) {
   return this.api('/me/contacts', merge({

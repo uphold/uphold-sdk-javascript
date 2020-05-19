@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 
 export function createCard(currency, label, options) {
   return this.api('/me/cards', merge({

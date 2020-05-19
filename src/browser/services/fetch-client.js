@@ -2,6 +2,7 @@ import { Client, createError } from '../../core';
 import isHtml from 'is-html';
 
 export default class FetchClient extends Client {
+
   request(url, method = 'get', body, headers = {}, options = {}) { // eslint-disable-line max-params
     const requestOptions = {
       ...options,
@@ -71,4 +72,5 @@ export default class FetchClient extends Client {
       return text;
     }
   }
+
 }

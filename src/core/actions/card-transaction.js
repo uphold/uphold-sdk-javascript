@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 
 export function cancelCardTransaction(cardId, transactionId, options) {
   return this.api(`/me/cards/${cardId}/transactions/${transactionId}/cancel`, {
@@ -28,7 +28,7 @@ export function commitCardTransaction(cardId, transactionId, { message, security
 }
 
 // eslint-disable-next-line max-params
-export function createCardTransaction(cardId, { amount, currency, destination, origin, message, securityCode }, commit, otp, options) {
+export function createCardTransaction(cardId, { amount, currency, destination, message, origin, securityCode }, commit, otp, options) {
   options = merge({
     body: {
       denomination: {
