@@ -1,24 +1,23 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
+exports.default = void 0;
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var actions = _interopRequireWildcard(require("./actions"));
 
-var _actions = require('./actions');
+var _errors = require("./errors");
 
-var actions = _interopRequireWildcard(_actions);
+var _services = require("./services");
 
-var _errors = require('./errors');
+var _utils = require("./utils");
 
-var _services = require('./services');
+var _get = _interopRequireDefault(require("lodash/get"));
 
-var _utils = require('./utils');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _lodash = require('lodash');
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 class SDK {
   constructor(options) {
@@ -43,44 +42,39 @@ class SDK {
       scope: 'uphold.scope',
       version: 'v0'
     };
-
-    this.options = _extends({}, defaultOptions, options);
+    this.options = Object.assign(Object.assign({}, defaultOptions), options);
     this.refreshRequestPromise = null;
-    this.tokenRequestPromise = null;
+    this.tokenRequestPromise = null; // Instantiate oauth client.
 
-    // Instantiate oauth client.
     this.oauthClient = new _services.OAuthClient(this.options);
   }
 
-  api(uri) {
-    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var _options$authenticate = options.authenticate;
-    const authenticate = _options$authenticate === undefined ? true : _options$authenticate;
-    var _options$headers = options.headers;
-    const headers = _options$headers === undefined ? {} : _options$headers;
-    var _options$method = options.method;
-    const method = _options$method === undefined ? 'get' : _options$method,
-          queryParams = options.queryParams,
-          raw = options.raw;
-    var _options$version = options.version;
-    const version = _options$version === undefined ? this.options.version : _options$version;
-    let body = options.body;
-
-
+  api(uri, options = {}) {
+    const {
+      authenticate = true,
+      headers = {},
+      method = 'get',
+      queryParams,
+      raw,
+      version = this.options.version
+    } = options;
+    let {
+      body
+    } = options;
     const url = (0, _utils.buildUrl)(uri, this.options.baseUrl, version, queryParams);
-
     let request;
 
     if (body) {
       if (typeof body === 'object') {
         body = JSON.stringify(body);
       }
+
       headers['content-type'] = 'application/json';
     }
 
     if (authenticate && !headers.authorization) {
       request = this.getToken().then(tokens => {
-        return this.client.request(url, method, body, _extends({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token), headers), options);
+        return this.client.request(url, method, body, Object.assign(Object.assign({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token)), headers), options);
       });
     } else {
       request = this.client.request(url, method, body, headers, options);
@@ -93,9 +87,7 @@ class SDK {
 
   authorize(code) {
     const accessTokenRequest = this.oauthClient.buildAccessTokenRequestByAuthorizationCodeGrant(code);
-
     this.tokenRequestPromise = this._authenticationRequest(accessTokenRequest);
-
     return this.tokenRequestPromise;
   }
 
@@ -103,23 +95,23 @@ class SDK {
     return this.storage.getItem(this.options.accessTokenKey).then(access_token => {
       if (!access_token) {
         this.tokenRequestPromise = null;
-
         return Promise.reject();
       }
 
       return this.storage.getItem(this.options.refreshTokenKey).then(refresh_token => ({
-        access_token: access_token,
-        refresh_token: refresh_token
-      }))
-      // Do not reject if refresh token does not exist.
-      .catch(() => ({ access_token: access_token }));
+        access_token,
+        refresh_token
+      })) // Do not reject if refresh token does not exist.
+      .catch(() => ({
+        access_token
+      }));
     }).catch(() => {
       // If there is a token request in progress, we wait for it.
       if (this.tokenRequestPromise) {
         return this.tokenRequestPromise;
-      }
+      } // There was never a token request.
 
-      // There was never a token request.
+
       return Promise.reject(new _errors.AuthorizationRequiredError());
     });
   }
@@ -133,11 +125,7 @@ class SDK {
     }).then(() => this.removeToken());
   }
 
-  paginate(url) {
-    let page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-    let itemsPerPage = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.options.itemsPerPage;
-    let options = arguments[3];
-
+  paginate(url, page = 1, itemsPerPage = this.options.itemsPerPage, options) {
     return new _services.Paginator(this, url, itemsPerPage, options).getPage(page);
   }
 
@@ -145,12 +133,10 @@ class SDK {
     return Promise.all([this.storage.removeItem(this.options.accessTokenKey), this.storage.removeItem(this.options.refreshTokenKey)]);
   }
 
-  setToken(token) {
-    let headers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
+  setToken(token, headers = {}) {
     return this.storage.setItem(this.options.accessTokenKey, token.access_token).then(() => {
-      this.storage.setItem(this.options.scope, (0, _lodash.get)(token, 'scope', ''));
-      this.storage.setItem(this.options.otpTokenStatus, (0, _lodash.get)(headers, 'otp-token', ''));
+      this.storage.setItem(this.options.scope, (0, _get.default)(token, 'scope', ''));
+      this.storage.setItem(this.options.otpTokenStatus, (0, _get.default)(headers, 'otp-token', ''));
 
       if (token.refresh_token) {
         this.storage.setItem(this.options.refreshTokenKey, token.refresh_token);
@@ -158,16 +144,15 @@ class SDK {
     }).then(() => token);
   }
 
-  _authenticationRequest(_ref) {
-    let body = _ref.body,
-        headers = _ref.headers,
-        url = _ref.url;
-
-    return this.client.request(url, 'post', body, headers).then((_ref2) => {
-      let body = _ref2.body,
-          headers = _ref2.headers;
-      return this.setToken(body, headers);
-    });
+  _authenticationRequest({
+    body,
+    headers,
+    url
+  }) {
+    return this.client.request(url, 'post', body, headers).then(({
+      body,
+      headers
+    }) => this.setToken(body, headers));
   }
 
   _refreshToken(url, method, body, headers, options) {
@@ -182,7 +167,7 @@ class SDK {
       }
 
       return this.refreshRequestPromise.then(tokens => {
-        return this.client.request(url, method, body, _extends({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token), headers), options).then(data => data.body);
+        return this.client.request(url, method, body, Object.assign(Object.assign({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token)), headers), options).then(data => data.body);
       });
     };
   }
@@ -190,10 +175,8 @@ class SDK {
   _requestRefreshToken(response) {
     return this.storage.getItem(this.options.refreshTokenKey).catch(() => Promise.reject(response)).then(refreshToken => {
       const refreshTokenRequest = this.oauthClient.buildRefreshTokenRequest(refreshToken);
-
       return this._authenticationRequest(refreshTokenRequest).then(tokens => {
         this.refreshRequestPromise = null;
-
         return tokens;
       });
     });
@@ -201,19 +184,20 @@ class SDK {
 
   _revokeToken() {
     return this.getToken().then(tokens => {
-      var _oauthClient$buildRev = this.oauthClient.buildRevokeTokenRequest(tokens.access_token);
-
-      const body = _oauthClient$buildRev.body,
-            headers = _oauthClient$buildRev.headers,
-            url = _oauthClient$buildRev.url;
-
-
+      const {
+        body,
+        headers,
+        url
+      } = this.oauthClient.buildRevokeTokenRequest(tokens.access_token);
       return this.client.request(url, 'post', body, headers);
     });
   }
-}
+
+} // eslint-disable-next-line no-unused-vars
+
 
 exports.default = SDK;
+
 for (const action in actions) {
   SDK.prototype[action] = actions[action];
 }

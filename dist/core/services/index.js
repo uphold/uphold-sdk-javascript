@@ -1,34 +1,18 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
+exports.Paginator = exports.Client = exports.OAuthClient = void 0;
 
-var _oauthClient = require('./oauth-client');
+var _oauthClient = _interopRequireDefault(require("./oauth-client"));
 
-Object.defineProperty(exports, 'OAuthClient', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_oauthClient).default;
-  }
-});
+exports.OAuthClient = _oauthClient.default;
 
-var _client = require('./client');
+var _client = _interopRequireDefault(require("./client"));
 
-Object.defineProperty(exports, 'Client', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_client).default;
-  }
-});
+exports.Client = _client.default;
 
-var _paginator = require('./paginator');
+var _paginator = _interopRequireDefault(require("./paginator"));
 
-Object.defineProperty(exports, 'Paginator', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_paginator).default;
-  }
-});
+exports.Paginator = _paginator.default;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

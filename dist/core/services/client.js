@@ -1,11 +1,13 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
+exports.default = void 0;
+
 class Client {
   constructor() {
     this.defaultHeaders = {};
   }
+
 }
+
 exports.default = Client;

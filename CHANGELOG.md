@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.4.2](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.2) (2020-05-19)
+- Fix sorting on paginator [\#34](https://github.com/uphold/uphold-sdk-javascript/pull/34) ([pgom](https://github.com/pgom))
+- Update dependencies [\#33](https://github.com/uphold/uphold-sdk-javascript/pull/33) ([heberbranco](https://github.com/heberbranco))
+
 ## [v2.4.1](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.1) (2020-04-14)
 - Remove user-agent default header [\#31](https://github.com/uphold/uphold-sdk-javascript/pull/31) ([pgom](https://github.com/pgom))
 

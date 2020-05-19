@@ -1,15 +1,12 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.BaseError = undefined;
+exports.__esModule = true;
+exports.BaseError = void 0;
 
-var _standardError = require('standard-error');
-
-var _standardError2 = _interopRequireDefault(_standardError);
+var _standardError = _interopRequireDefault(require("standard-error"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-class BaseError extends _standardError2.default {}
+class BaseError extends _standardError.default {}
+
 exports.BaseError = BaseError;

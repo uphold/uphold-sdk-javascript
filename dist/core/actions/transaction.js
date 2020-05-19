@@ -1,10 +1,9 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
 exports.getTransaction = getTransaction;
 exports.getTransactions = getTransactions;
+
 function getTransaction(transactionId, options) {
   return this.api(`/me/transactions/${transactionId}`, options);
 }

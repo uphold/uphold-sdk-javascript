@@ -1,24 +1,20 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
 exports.createCard = createCard;
 exports.getCard = getCard;
 exports.getCards = getCards;
 exports.updateCard = updateCard;
 
-var _lodash = require('lodash.merge');
-
-var _lodash2 = _interopRequireDefault(_lodash);
+var _merge = _interopRequireDefault(require("lodash/merge"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function createCard(currency, label, options) {
-  return this.api('/me/cards', (0, _lodash2.default)({
+  return this.api('/me/cards', (0, _merge.default)({
     body: {
-      currency: currency,
-      label: label
+      currency,
+      label
     },
     method: 'post'
   }, options));
@@ -33,9 +29,9 @@ function getCards(page, itemsPerPage, options) {
 }
 
 function updateCard(cardId, label, options) {
-  return this.api(`/me/cards/${cardId}`, (0, _lodash2.default)({
+  return this.api(`/me/cards/${cardId}`, (0, _merge.default)({
     body: {
-      label: label
+      label
     },
     method: 'patch'
   }, options));

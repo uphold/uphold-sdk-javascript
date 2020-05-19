@@ -1,25 +1,14 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
+exports.RequestClient = exports.CacheStorage = void 0;
 
-var _cacheStorage = require('./cache-storage');
+var _cacheStorage = _interopRequireDefault(require("./cache-storage"));
 
-Object.defineProperty(exports, 'CacheStorage', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_cacheStorage).default;
-  }
-});
+exports.CacheStorage = _cacheStorage.default;
 
-var _requestClient = require('./request-client');
+var _requestClient = _interopRequireDefault(require("./request-client"));
 
-Object.defineProperty(exports, 'RequestClient', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_requestClient).default;
-  }
-});
+exports.RequestClient = _requestClient.default;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

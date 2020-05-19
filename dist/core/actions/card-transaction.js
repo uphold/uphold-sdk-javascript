@@ -1,82 +1,75 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
+exports.__esModule = true;
 exports.cancelCardTransaction = cancelCardTransaction;
 exports.commitCardTransaction = commitCardTransaction;
 exports.createCardTransaction = createCardTransaction;
 exports.getCardTransactions = getCardTransactions;
 exports.resendCardTransaction = resendCardTransaction;
 
-var _lodash = require('lodash.merge');
-
-var _lodash2 = _interopRequireDefault(_lodash);
+var _merge = _interopRequireDefault(require("lodash/merge"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function cancelCardTransaction(cardId, transactionId, options) {
-  return this.api(`/me/cards/${cardId}/transactions/${transactionId}/cancel`, _extends({
+  return this.api(`/me/cards/${cardId}/transactions/${transactionId}/cancel`, Object.assign({
     method: 'post'
   }, options));
-}
+} // eslint-disable-next-line max-params
 
-// eslint-disable-next-line max-params
-function commitCardTransaction(cardId, transactionId, _ref, otp, options) {
-  let message = _ref.message,
-      securityCode = _ref.securityCode;
 
-  options = (0, _lodash2.default)({
+function commitCardTransaction(cardId, transactionId, {
+  message,
+  securityCode
+}, otp, options) {
+  options = (0, _merge.default)({
     body: {
-      message: message,
-      securityCode: securityCode
+      message,
+      securityCode
     },
     method: 'post'
   }, options);
 
   if (otp) {
-    options.headers = _extends({
+    options.headers = Object.assign({
       'otp-token': otp
     }, options.headers);
   }
 
   return this.api(`/me/cards/${cardId}/transactions/${transactionId}/commit`, options);
-}
+} // eslint-disable-next-line max-params
 
-// eslint-disable-next-line max-params
-function createCardTransaction(cardId, _ref2, commit, otp, options) {
-  let amount = _ref2.amount,
-      currency = _ref2.currency,
-      destination = _ref2.destination,
-      origin = _ref2.origin,
-      message = _ref2.message,
-      securityCode = _ref2.securityCode;
 
-  options = (0, _lodash2.default)({
+function createCardTransaction(cardId, {
+  amount,
+  currency,
+  destination,
+  message,
+  origin,
+  securityCode
+}, commit, otp, options) {
+  options = (0, _merge.default)({
     body: {
       denomination: {
-        amount: amount,
-        currency: currency
+        amount,
+        currency
       },
-      destination: destination,
-      message: message,
-      origin: origin,
-      securityCode: securityCode
+      destination,
+      message,
+      origin,
+      securityCode
     },
     method: 'post'
   }, options);
 
   if (commit) {
-    options.queryParams = _extends({
+    options.queryParams = Object.assign({
       commit: true
     }, options.queryParams);
   }
 
   if (otp) {
-    options.headers = _extends({
+    options.headers = Object.assign({
       'otp-token': otp
     }, options.headers);
   }
@@ -89,7 +82,7 @@ function getCardTransactions(cardId, page, itemsPerPage, options) {
 }
 
 function resendCardTransaction(cardId, transactionId, options) {
-  return this.api(`/me/cards/${cardId}/transactions/${transactionId}/resend`, _extends({
+  return this.api(`/me/cards/${cardId}/transactions/${transactionId}/resend`, Object.assign({
     method: 'post'
   }, options));
 }

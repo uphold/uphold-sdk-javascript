@@ -1,22 +1,21 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
+exports.default = void 0;
 
-var _services = require('./services');
+var _services = require("./services");
 
-var _core = require('../core');
-
-var _core2 = _interopRequireDefault(_core);
+var _core = _interopRequireDefault(require("../core"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = class extends _core2.default {
+class _default extends _core.default {
   constructor() {
     super(...arguments);
-
     this.client = new _services.RequestClient();
     this.storage = new _services.CacheStorage();
   }
-};
+
+}
+
+exports.default = _default;
