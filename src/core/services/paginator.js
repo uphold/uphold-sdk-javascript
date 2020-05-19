@@ -1,5 +1,5 @@
-import merge from 'lodash/merge';
 import contentRange from 'content-range';
+import merge from 'lodash/merge';
 
 export default class Paginator {
 
