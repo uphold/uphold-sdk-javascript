@@ -42,7 +42,7 @@ class SDK {
       scope: 'uphold.scope',
       version: 'v0'
     };
-    this.options = Object.assign(Object.assign({}, defaultOptions), options);
+    this.options = Object.assign({}, defaultOptions, options);
     this.refreshRequestPromise = null;
     this.tokenRequestPromise = null; // Instantiate oauth client.
 
@@ -74,7 +74,7 @@ class SDK {
 
     if (authenticate && !headers.authorization) {
       request = this.getToken().then(tokens => {
-        return this.client.request(url, method, body, Object.assign(Object.assign({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token)), headers), options);
+        return this.client.request(url, method, body, Object.assign({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token), headers), options);
       });
     } else {
       request = this.client.request(url, method, body, headers, options);
@@ -167,7 +167,7 @@ class SDK {
       }
 
       return this.refreshRequestPromise.then(tokens => {
-        return this.client.request(url, method, body, Object.assign(Object.assign({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token)), headers), options).then(data => data.body);
+        return this.client.request(url, method, body, Object.assign({}, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token), headers), options).then(data => data.body);
       });
     };
   }

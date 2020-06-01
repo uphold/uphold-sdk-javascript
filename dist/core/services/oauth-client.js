@@ -47,7 +47,7 @@ class OAuthClient {
       body: (0, _utils.buildBody)({
         token
       }),
-      headers: Object.assign(Object.assign({}, (0, _utils.buildBearerAuthorizationHeader)(token)), this.headers),
+      headers: Object.assign({}, (0, _utils.buildBearerAuthorizationHeader)(token), this.headers),
       url: this.revokeUrl
     };
   }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.4.3](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.3) (2020-06-01)
+- Change .babelrc to babel.config.js [\#36](https://github.com/uphold/uphold-sdk-javascript/pull/36) ([heberbranco](https://github.com/heberbranco))
+- Add size badge to README [\#35](https://github.com/uphold/uphold-sdk-javascript/pull/35) ([heberbranco](https://github.com/heberbranco))
+
 ## [v2.4.2](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.2) (2020-05-19)
 - Fix sorting on paginator [\#34](https://github.com/uphold/uphold-sdk-javascript/pull/34) ([pgom](https://github.com/pgom))
 - Update dependencies [\#33](https://github.com/uphold/uphold-sdk-javascript/pull/33) ([heberbranco](https://github.com/heberbranco))

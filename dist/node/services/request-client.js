@@ -14,9 +14,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 class RequestClient extends _core.Client {
   request(url, method, body, headers = {}, options) {
     // eslint-disable-line max-params
-    return (0, _requestPromise.default)(Object.assign(Object.assign({}, options), {}, {
+    return (0, _requestPromise.default)(Object.assign({}, options, {
       body,
-      headers: Object.assign(Object.assign({}, this.defaultHeaders), headers),
+      headers: Object.assign({}, this.defaultHeaders, headers),
       method,
       resolveWithFullResponse: true,
       strictSSL: false,

@@ -11,7 +11,7 @@ function createError(error, response) {
   // eslint-disable-next-line no-unused-vars
   for (const SDKError of _errors.default) {
     if (SDKError.hasError && SDKError.hasError(error)) {
-      return new SDKError(Object.assign(Object.assign({}, error), {}, {
+      return new SDKError(Object.assign({}, error, {
         response
       }));
     }
