@@ -1,23 +1,13 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
 exports.buildBearerAuthorizationHeader = buildBearerAuthorizationHeader;
 exports.buildBody = buildBody;
 exports.buildBasicAuthorizationHeader = buildBasicAuthorizationHeader;
 exports.normalizeURI = normalizeURI;
 exports.buildUrl = buildUrl;
 
-var _textEncoding = require('text-encoding');
-
-var _qs = require('qs');
-
-var _base64Js = require('base64-js');
-
-var _base64Js2 = _interopRequireDefault(_base64Js);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _querystring = require("querystring");
 
 function buildBearerAuthorizationHeader(token) {
   return {
@@ -36,9 +26,10 @@ function buildBody(data) {
 }
 
 function buildBasicAuthorizationHeader(username, password) {
-  const credentials = _base64Js2.default.fromByteArray(new _textEncoding.TextEncoder().encode(`${username}:${password}`));
-
-  return { authorization: `Basic ${credentials}` };
+  const credentials = new Buffer(`${username}:${password}`).toString('base64');
+  return {
+    authorization: `Basic ${credentials}`
+  };
 }
 
 function normalizeURI(uri) {
@@ -54,7 +45,7 @@ function buildUrl(uri, baseUrl, version, queryParams) {
   uri = normalizeURI(uri);
 
   if (queryParams) {
-    uri = `${uri}?${(0, _qs.stringify)(queryParams)}`;
+    uri = `${uri}?${(0, _querystring.stringify)(queryParams)}`;
   }
 
   return version ? `${baseUrl}/${version}/${uri}` : `${baseUrl}/${uri}`;

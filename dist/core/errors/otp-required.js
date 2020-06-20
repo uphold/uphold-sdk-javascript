@@ -1,29 +1,29 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.OTPRequiredError = undefined;
+exports.__esModule = true;
+exports.OTPRequiredError = void 0;
 
-var _base = require('./base');
+var _base = require("./base");
 
-var _lodash = require('lodash');
+var _includes = _interopRequireDefault(require("lodash/includes"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class OTPRequiredError extends _base.BaseError {
-  static hasError() {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    let headers = _ref.headers;
-
+  static hasError({
+    headers
+  } = {}) {
     if (!headers || !headers['otp-token']) {
       return false;
     }
 
-    return (0, _lodash.includes)(['OPTIONAL', 'REQUIRED'], headers['otp-token'].toUpperCase());
+    return (0, _includes.default)(['OPTIONAL', 'REQUIRED'], headers['otp-token'].toUpperCase());
   }
 
   constructor() {
     super('otp_required', ...arguments);
   }
+
 }
+
 exports.OTPRequiredError = OTPRequiredError;

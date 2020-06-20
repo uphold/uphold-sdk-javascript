@@ -35,9 +35,7 @@ export default class extends SDK {
 
 ```json
 {
-  "defaultHeaders": {
-    "user-agent": "uphold-sdk-javascript/<version>"
-  }
+  "defaultHeaders": {}
 }
 ```
 

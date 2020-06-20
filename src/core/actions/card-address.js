@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 
 export function createCardAddress(cardId, network, options) {
   return this.api(`/me/cards/${cardId}/addresses`, merge({

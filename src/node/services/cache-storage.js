@@ -1,4 +1,5 @@
 export default class CacheStorage {
+
   constructor(cache = {}) {
     this.cache = cache;
   }
@@ -20,4 +21,5 @@ export default class CacheStorage {
 
     return Promise.resolve();
   }
+
 }

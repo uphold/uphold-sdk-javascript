@@ -2,9 +2,10 @@ import * as actions from './actions';
 import { AuthorizationRequiredError, UnauthorizedError } from './errors';
 import { OAuthClient, Paginator } from './services';
 import { buildBearerAuthorizationHeader, buildUrl } from './utils';
-import { get } from 'lodash';
+import get from 'lodash/get';
 
 export default class SDK {
+
   constructor(options) {
     if (!options) {
       throw new Error(`Missing options`);
@@ -187,8 +188,10 @@ export default class SDK {
         return this.client.request(url, 'post', body, headers);
       });
   }
+
 }
 
+// eslint-disable-next-line no-unused-vars
 for (const action in actions) {
   SDK.prototype[action] = actions[action];
 }

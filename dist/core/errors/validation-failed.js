@@ -1,23 +1,21 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ValidationFailedError = undefined;
+exports.__esModule = true;
+exports.ValidationFailedError = void 0;
 
-var _base = require('./base');
+var _base = require("./base");
 
 class ValidationFailedError extends _base.BaseError {
-  static hasError() {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    let body = _ref.body;
-
+  static hasError({
+    body
+  } = {}) {
     return body && body.code === 'validation_failed';
   }
 
   constructor() {
     super('validation_failed', ...arguments);
   }
+
 }
+
 exports.ValidationFailedError = ValidationFailedError;

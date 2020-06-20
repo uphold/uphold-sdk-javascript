@@ -1,6 +1,7 @@
 import { BaseError } from './base';
 
 export class NotFoundError extends BaseError {
+
   static hasError({ status } = {}) {
     return status === 404;
   }
@@ -8,4 +9,5 @@ export class NotFoundError extends BaseError {
   constructor() {
     super('not_found', ...arguments);
   }
+
 }

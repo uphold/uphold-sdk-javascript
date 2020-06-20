@@ -1,10 +1,9 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
 exports.getAccount = getAccount;
 exports.getAccounts = getAccounts;
+
 function getAccount(accountId, options) {
   return this.api(`/me/accounts/${accountId}`, options);
 }

@@ -1,6 +1,4 @@
-import { TextEncoder } from 'text-encoding';
-import { stringify } from 'qs';
-import base64 from 'base64-js';
+import { stringify } from 'querystring';
 
 export function buildBearerAuthorizationHeader(token) {
   return {
@@ -19,9 +17,7 @@ export function buildBody(data) {
 }
 
 export function buildBasicAuthorizationHeader(username, password) {
-  const credentials = base64.fromByteArray(
-    new TextEncoder().encode(`${username}:${password}`)
-  );
+  const credentials = new Buffer(`${username}:${password}`).toString('base64');
 
   return { authorization: `Basic ${credentials}` };
 }

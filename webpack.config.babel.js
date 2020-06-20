@@ -1,42 +1,29 @@
-
-/**
- * Module dependencies.
- */
-
-import webpack from 'webpack';
-
-/**
- * Webpack configuration.
- */
+import { join } from 'path';
+import LodashWebpackPlugin from 'lodash-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 
 export default {
-  entry: './src/browser/index.js',
+  entry: join(__dirname, 'src', 'browser', 'index.js'),
+  mode: 'production',
   module: {
-    loaders: [{
+    rules: [{
       exclude: /node_modules/,
       loader: 'babel-loader',
-      query: {
-        plugins: [
-          ['transform-es2015-for-of', {
-            loose: true
-          }]
-        ],
-        presets: ['es2015']
-      },
       test: /\.js$/
-    }, {
-      exclude: /node_modules\/(?!html-tags).+/,
-      loader: 'json-loader',
-      test: /\.json$/
     }]
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin({
+      extractComments: false,
+      terserOptions: { output: { comments: false } }
+    })]
   },
   output: {
     filename: 'uphold-sdk-javascript.js',
     library: 'uphold-sdk-javascript',
     libraryTarget: 'commonjs2',
-    path: `${__dirname}/dist/browser`
+    path: join(__dirname, 'dist', 'browser')
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin()
-  ]
+  plugins: [new LodashWebpackPlugin()]
 };

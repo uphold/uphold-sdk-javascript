@@ -1,23 +1,21 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.InternalServerError = undefined;
+exports.__esModule = true;
+exports.InternalServerError = void 0;
 
-var _base = require('./base');
+var _base = require("./base");
 
 class InternalServerError extends _base.BaseError {
-  static hasError() {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    let status = _ref.status;
-
+  static hasError({
+    status
+  } = {}) {
     return status === 500;
   }
 
   constructor() {
     super('internal_server', ...arguments);
   }
+
 }
+
 exports.InternalServerError = InternalServerError;

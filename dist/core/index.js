@@ -1,52 +1,35 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
+var _exportNames = {};
+exports.default = void 0;
 
-var _sdk = require('./sdk');
+var _sdk = _interopRequireDefault(require("./sdk"));
 
-Object.defineProperty(exports, 'default', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_sdk).default;
-  }
-});
+exports.default = _sdk.default;
 
-var _errors = require('./errors');
+var _errors = require("./errors");
 
 Object.keys(_errors).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _errors[key];
-    }
-  });
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  exports[key] = _errors[key];
 });
 
-var _services = require('./services');
+var _services = require("./services");
 
 Object.keys(_services).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _services[key];
-    }
-  });
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  exports[key] = _services[key];
 });
 
-var _utils = require('./utils');
+var _utils = require("./utils");
 
 Object.keys(_utils).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _utils[key];
-    }
-  });
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  exports[key] = _utils[key];
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

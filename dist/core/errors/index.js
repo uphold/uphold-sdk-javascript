@@ -1,44 +1,54 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ValidationFailedError = exports.UnknownError = exports.UnavailableError = exports.UnauthorizedError = exports.RateLimitError = exports.OTPRequiredError = exports.NotFoundError = exports.InvalidScopeError = exports.InternalServerError = exports.ForbiddenError = exports.BaseError = exports.AuthorizationRequiredError = undefined;
+exports.__esModule = true;
+exports.default = void 0;
 
-var _authorizationRequired = require('./authorization-required');
-
-var _base = require('./base');
-
-var _forbidden = require('./forbidden');
-
-var _internalServer = require('./internal-server');
-
-var _invalidScope = require('./invalid-scope');
-
-var _notFound = require('./not-found');
-
-var _otpRequired = require('./otp-required');
-
-var _rateLimit = require('./rate-limit');
-
-var _unauthorized = require('./unauthorized');
-
-var _unavailable = require('./unavailable');
-
-var _unknown = require('./unknown');
-
-var _validationFailed = require('./validation-failed');
+var _authorizationRequired = require("./authorization-required");
 
 exports.AuthorizationRequiredError = _authorizationRequired.AuthorizationRequiredError;
+
+var _base = require("./base");
+
 exports.BaseError = _base.BaseError;
+
+var _forbidden = require("./forbidden");
+
 exports.ForbiddenError = _forbidden.ForbiddenError;
+
+var _internalServer = require("./internal-server");
+
 exports.InternalServerError = _internalServer.InternalServerError;
+
+var _invalidScope = require("./invalid-scope");
+
 exports.InvalidScopeError = _invalidScope.InvalidScopeError;
+
+var _notFound = require("./not-found");
+
 exports.NotFoundError = _notFound.NotFoundError;
+
+var _otpRequired = require("./otp-required");
+
 exports.OTPRequiredError = _otpRequired.OTPRequiredError;
+
+var _rateLimit = require("./rate-limit");
+
 exports.RateLimitError = _rateLimit.RateLimitError;
+
+var _unauthorized = require("./unauthorized");
+
 exports.UnauthorizedError = _unauthorized.UnauthorizedError;
+
+var _unavailable = require("./unavailable");
+
 exports.UnavailableError = _unavailable.UnavailableError;
+
+var _unknown = require("./unknown");
+
 exports.UnknownError = _unknown.UnknownError;
+
+var _validationFailed = require("./validation-failed");
+
 exports.ValidationFailedError = _validationFailed.ValidationFailedError;
-exports.default = [_authorizationRequired.AuthorizationRequiredError, _forbidden.ForbiddenError, _internalServer.InternalServerError, _invalidScope.InvalidScopeError, _notFound.NotFoundError, _otpRequired.OTPRequiredError, _rateLimit.RateLimitError, _unauthorized.UnauthorizedError, _unavailable.UnavailableError, _validationFailed.ValidationFailedError, _unknown.UnknownError];
+var _default = [_authorizationRequired.AuthorizationRequiredError, _forbidden.ForbiddenError, _internalServer.InternalServerError, _invalidScope.InvalidScopeError, _notFound.NotFoundError, _otpRequired.OTPRequiredError, _rateLimit.RateLimitError, _unauthorized.UnauthorizedError, _unavailable.UnavailableError, _validationFailed.ValidationFailedError, _unknown.UnknownError];
+exports.default = _default;

@@ -1,6 +1,7 @@
 import { buildBearerAuthorizationHeader, buildBody, buildUrl } from '../utils';
 
 export default class OAuthClient {
+
   constructor({ baseUrl, clientId, clientSecret }) {
     this.clientId = clientId;
     this.clientSecret = clientSecret;
@@ -49,4 +50,5 @@ export default class OAuthClient {
       ...data
     });
   }
+
 }

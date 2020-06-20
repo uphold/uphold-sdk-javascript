@@ -3,6 +3,7 @@ import { RequestError } from 'request-promise/errors';
 import request from 'request-promise';
 
 export default class RequestClient extends Client {
+
   request(url, method, body, headers = {}, options) { // eslint-disable-line max-params
     return request({
       ...options,
@@ -35,4 +36,5 @@ export default class RequestClient extends Client {
       return body;
     }
   }
+
 }

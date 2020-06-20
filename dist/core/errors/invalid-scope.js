@@ -1,19 +1,15 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.InvalidScopeError = undefined;
+exports.__esModule = true;
+exports.InvalidScopeError = void 0;
 
-var _base = require('./base');
+var _base = require("./base");
 
 class InvalidScopeError extends _base.BaseError {
-  static hasError() {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    let body = _ref.body,
-        status = _ref.status;
-
+  static hasError({
+    body,
+    status
+  } = {}) {
     if (!status || !body || !body.error) {
       return false;
     }
@@ -28,5 +24,7 @@ class InvalidScopeError extends _base.BaseError {
   constructor() {
     super('invalid_scope', ...arguments);
   }
+
 }
+
 exports.InvalidScopeError = InvalidScopeError;

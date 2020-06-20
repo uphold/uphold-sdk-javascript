@@ -1,29 +1,17 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
 
-var _errorFactory = require('./error-factory');
+var _errorFactory = require("./error-factory");
 
 Object.keys(_errorFactory).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _errorFactory[key];
-    }
-  });
+  exports[key] = _errorFactory[key];
 });
 
-var _requestHelper = require('./request-helper');
+var _requestHelper = require("./request-helper");
 
 Object.keys(_requestHelper).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _requestHelper[key];
-    }
-  });
+  exports[key] = _requestHelper[key];
 });

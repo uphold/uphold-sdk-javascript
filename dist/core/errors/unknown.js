@@ -1,11 +1,9 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.UnknownError = undefined;
+exports.__esModule = true;
+exports.UnknownError = void 0;
 
-var _base = require('./base');
+var _base = require("./base");
 
 class UnknownError extends _base.BaseError {
   static hasError() {
@@ -15,5 +13,7 @@ class UnknownError extends _base.BaseError {
   constructor() {
     super('unknown', ...arguments);
   }
+
 }
+
 exports.UnknownError = UnknownError;

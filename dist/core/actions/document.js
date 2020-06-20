@@ -1,22 +1,18 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
 exports.createDocument = createDocument;
 exports.getDocuments = getDocuments;
 
-var _lodash = require('lodash.merge');
-
-var _lodash2 = _interopRequireDefault(_lodash);
+var _merge = _interopRequireDefault(require("lodash/merge"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function createDocument(type, value, options) {
-  return this.api('/me/documents', (0, _lodash2.default)({
+  return this.api('/me/documents', (0, _merge.default)({
     body: {
-      type: type,
-      value: value
+      type,
+      value
     },
     method: 'post'
   }, options));

@@ -1,44 +1,37 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
+exports.default = void 0;
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _core = require("../../core");
 
-var _core = require('../../core');
+var _errors = require("request-promise/errors");
 
-var _errors = require('request-promise/errors');
-
-var _requestPromise = require('request-promise');
-
-var _requestPromise2 = _interopRequireDefault(_requestPromise);
+var _requestPromise = _interopRequireDefault(require("request-promise"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class RequestClient extends _core.Client {
-  request(url, method, body) {
-    let headers = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-    let options = arguments[4];
+  request(url, method, body, headers = {}, options) {
     // eslint-disable-line max-params
-    return (0, _requestPromise2.default)(_extends({}, options, {
-      body: body,
-      headers: _extends({}, this.defaultHeaders, headers),
-      method: method,
+    return (0, _requestPromise.default)(Object.assign({}, options, {
+      body,
+      headers: Object.assign({}, this.defaultHeaders, headers),
+      method,
       resolveWithFullResponse: true,
       strictSSL: false,
-      url: url
+      url
     })).then(response => this._formatResponse(response)).catch(response => Promise.reject(response instanceof _errors.RequestError ? response : (0, _core.createError)(this._formatResponse(response.response), response)));
   }
 
-  _formatResponse(_ref) {
-    let body = _ref.body,
-        headers = _ref.headers,
-        statusCode = _ref.statusCode;
-
+  _formatResponse({
+    body,
+    headers,
+    statusCode
+  }) {
     return {
       body: this._parseBody(body),
-      headers: headers,
+      headers,
       status: statusCode
     };
   }
@@ -50,5 +43,7 @@ class RequestClient extends _core.Client {
       return body;
     }
   }
+
 }
+
 exports.default = RequestClient;
