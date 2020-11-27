@@ -17,7 +17,7 @@ export function buildBody(data) {
 }
 
 export function buildBasicAuthorizationHeader(username, password) {
-  const credentials = new Buffer(`${username}:${password}`).toString('base64');
+  const credentials = Buffer.from(`${username}:${password}`).toString('base64');
 
   return { authorization: `Basic ${credentials}` };
 }
