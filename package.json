@@ -31,8 +31,7 @@
   "browser": "dist/browser/uphold-sdk-javascript.js",
   "dependencies": {
     "content-range": "1.1.0",
-    "request": "2.88.2",
-    "request-promise": "4.2.5",
+    "got": "^11.8.0",
     "standard-error": "1.1.0"
   },
   "devDependencies": {

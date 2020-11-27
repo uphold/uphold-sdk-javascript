@@ -1,10 +1,10 @@
 import { NotFoundError, RequestClient } from '../../../src/node';
-import { RequestError } from 'request-promise/errors';
+import { RequestError } from 'got';
 import nock from 'nock';
 
 describe('RequestClient', () => {
   describe('request()', () => {
-    const url = 'http://foo.bar';
+    const url = 'https://api.uphold.com/';
 
     it('should return formatted response if status is 200', () => {
       nock(url)

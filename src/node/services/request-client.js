@@ -1,24 +1,24 @@
 import { Client, createError } from '../../core';
-import { RequestError } from 'request-promise/errors';
-import request from 'request-promise';
+import got from 'got';
 
 export default class RequestClient extends Client {
 
   request(url, method, body, headers = {}, options) { // eslint-disable-line max-params
-    return request({
+    return got({
       ...options,
       body,
       headers: {
         ...this.defaultHeaders,
         ...headers
       },
+      https: {
+        rejectUnauthorized: false
+      },
       method,
-      resolveWithFullResponse: true,
-      strictSSL: false,
       url
     })
       .then(response => this._formatResponse(response))
-      .catch(response => Promise.reject(response instanceof RequestError ? response : createError(this._formatResponse(response.response), response)));
+      .catch(response => Promise.reject(response.response ? createError(this._formatResponse(response.response), response) : response));
   }
 
   _formatResponse({ body, headers, statusCode }) {
