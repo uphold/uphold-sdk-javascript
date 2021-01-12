@@ -26,9 +26,10 @@ describe('UserActions', () => {
         firstName: 'boz',
         identity: 'buz',
         lastName: 'qax',
-        settings: 'qex',
-        state: 'qix',
-        username: 'qox'
+        password: 'qex',
+        settings: 'qix',
+        state: 'qox',
+        username: 'qux'
       }, false, { fiz: 'faz' })
         .then(result => {
           expect(result).toBe('foo');
@@ -40,9 +41,10 @@ describe('UserActions', () => {
               firstName: 'boz',
               identity: 'buz',
               lastName: 'qax',
-              settings: 'qex',
-              state: 'qix',
-              username: 'qox'
+              password: 'qex',
+              settings: 'qix',
+              state: 'qox',
+              username: 'qux'
             },
             fiz: 'faz',
             method: 'patch'
