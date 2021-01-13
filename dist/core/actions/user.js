@@ -19,6 +19,7 @@ function updateMe({
   firstName,
   identity,
   lastName,
+  password,
   settings,
   state,
   username
@@ -31,6 +32,7 @@ function updateMe({
       firstName,
       identity,
       lastName,
+      password,
       settings,
       state,
       username

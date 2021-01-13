@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.4.4](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.4) (2021-01-13)
+- Add password field to updateMe [\#46](https://github.com/uphold/uphold-sdk-javascript/pull/46) ([hitmanmcc](https://github.com/hitmanmcc))
+- Add release task [\#47](https://github.com/uphold/uphold-sdk-javascript/pull/47) ([hitmanmcc](https://github.com/hitmanmcc))
+
 ## [v2.4.3](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.3) (2020-06-01)
 - Change .babelrc to babel.config.js [\#36](https://github.com/uphold/uphold-sdk-javascript/pull/36) ([heberbranco](https://github.com/heberbranco))
 - Add size badge to README [\#35](https://github.com/uphold/uphold-sdk-javascript/pull/35) ([heberbranco](https://github.com/heberbranco))
