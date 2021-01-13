@@ -23,7 +23,7 @@
     "docs:prepare": "cd docs/_book && git init && git checkout -b gh-pages && git add . && git commit -m 'Update documentation'",
     "docs:publish": "cd docs/_book && git push git@github.com:uphold/uphold-sdk-javascript gh-pages --force && cd .. && rm -rf _book",
     "lint": "eslint --cache src test",
-    "release": "npm version $1 -m 'Release %s'",
+    "release": "tasks/release.sh",
     "tdd": "yarn test --watch",
     "test": "jest --config jest.json",
     "version": "yarn build && yarn changelog && git add -f dist CHANGELOG.md"
