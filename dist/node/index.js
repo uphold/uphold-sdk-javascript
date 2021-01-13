@@ -9,6 +9,7 @@ var _core = require("../core");
 Object.keys(_core).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _core[key]) return;
   exports[key] = _core[key];
 });
 
@@ -17,6 +18,7 @@ var _services = require("./services");
 Object.keys(_services).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _services[key]) return;
   exports[key] = _services[key];
 });
 
