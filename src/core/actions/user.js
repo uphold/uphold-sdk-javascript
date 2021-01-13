@@ -4,7 +4,7 @@ export function getMe(options) {
   return this.api('/me', options);
 }
 
-export function updateMe({ address, birthdate, country, firstName, identity, lastName, settings, state, username }, otp, options) {
+export function updateMe({ address, birthdate, country, firstName, identity, lastName, password, settings, state, username }, otp, options) {
   options = merge({
     body: {
       address,
@@ -13,6 +13,7 @@ export function updateMe({ address, birthdate, country, firstName, identity, las
       firstName,
       identity,
       lastName,
+      password,
       settings,
       state,
       username
