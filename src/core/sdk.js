@@ -127,6 +127,8 @@ export default class SDK {
   }
 
   setToken(token, headers = {}) {
+    console.log('setToken', this.storage);
+
     return this.storage.setItem(this.options.accessTokenKey, token.access_token)
       .then(() => {
         this.storage.setItem(this.options.scope, get(token, 'scope', ''));
@@ -136,12 +138,12 @@ export default class SDK {
           this.storage.setItem(this.options.refreshTokenKey, token.refresh_token);
         }
       })
-      .then(() => token);
+      .then(() => { console.log('setToken set', this.storage); return token; });
   }
 
   _authenticationRequest({ body, headers, url }) {
     return this.client.request(url, 'post', body, headers)
-      .then(({ body, headers }) => this.setToken(body, headers));
+      .then(({ body, headers }) => { return this.setToken(body, headers); });
   }
 
   _refreshToken(url, method, body, headers, options) { // eslint-disable-line max-params
@@ -166,6 +168,8 @@ export default class SDK {
   }
 
   _requestRefreshToken(response) {
+    console.log('storage value', this.storage);
+
     return this.storage.getItem(this.options.refreshTokenKey)
       .catch(() => Promise.reject(response))
       .then(refreshToken => {

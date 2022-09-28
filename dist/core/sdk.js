@@ -134,6 +134,7 @@ class SDK {
   }
 
   setToken(token, headers = {}) {
+    console.log('setToken', this.storage);
     return this.storage.setItem(this.options.accessTokenKey, token.access_token).then(() => {
       this.storage.setItem(this.options.scope, (0, _get.default)(token, 'scope', ''));
       this.storage.setItem(this.options.otpTokenStatus, (0, _get.default)(headers, 'otp-token', ''));
@@ -141,7 +142,10 @@ class SDK {
       if (token.refresh_token) {
         this.storage.setItem(this.options.refreshTokenKey, token.refresh_token);
       }
-    }).then(() => token);
+    }).then(() => {
+      console.log('setToken set', this.storage);
+      return token;
+    });
   }
 
   _authenticationRequest({
@@ -152,7 +156,9 @@ class SDK {
     return this.client.request(url, 'post', body, headers).then(({
       body,
       headers
-    }) => this.setToken(body, headers));
+    }) => {
+      return this.setToken(body, headers);
+    });
   }
 
   _refreshToken(url, method, body, headers, options) {
@@ -173,6 +179,7 @@ class SDK {
   }
 
   _requestRefreshToken(response) {
+    console.log('storage value', this.storage);
     return this.storage.getItem(this.options.refreshTokenKey).catch(() => Promise.reject(response)).then(refreshToken => {
       const refreshTokenRequest = this.oauthClient.buildRefreshTokenRequest(refreshToken);
       return this._authenticationRequest(refreshTokenRequest).then(tokens => {
