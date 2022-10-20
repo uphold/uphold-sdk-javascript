@@ -55,6 +55,82 @@ describe('SDK', () => {
     });
   });
 
+  describe('exchangeToken()', () => {
+    const sdk = new SDK({ clientId: 'foo', clientSecret: 'bar' });
+
+    beforeEach(() => {
+      sdk.client = { request: jest.fn(() => Promise.resolve({})) };
+      sdk.storage = {
+        getItem: jest.fn(() => Promise.resolve('token')),
+        setItem: jest.fn(() => Promise.resolve('token'))
+      };
+    });
+
+    describe('when an access token expires', () => {
+      it('should refresh the token', () => {
+        sdk.client.request.mockReturnValueOnce(Promise.reject({ body: { error: 'invalid_token' }, headers: {} }));
+        sdk.client.request.mockReturnValueOnce(Promise.resolve({ body: { access_token: 'foo', refresh_token: 'bar' } }));
+        sdk.client.request.mockReturnValueOnce(Promise.resolve({ body: {} }));
+
+        return sdk.exchangeToken({ client_name: 'bar', client_secret: 'biz' })
+          .then(() => {
+            expect(sdk.client.request.mock.calls.length).toBe(3);
+            expect(sdk.client.request.mock.calls[0][0]).toBe('https://api.uphold.com/oauth2/token');
+            expect(sdk.client.request.mock.calls[1][0]).toBe('https://api.uphold.com/oauth2/token');
+            expect(sdk.client.request.mock.calls[0][0]).toBe('https://api.uphold.com/oauth2/token');
+            expect(sdk.client.request.mock.calls[2][3]).toEqual({
+              authorization: 'Bearer foo',
+              'content-type': 'application/x-www-form-urlencoded'
+            });
+          });
+      });
+
+      it('should not refresh the token if refresh token is not stored', done => {
+        sdk.client.request.mockReturnValue(Promise.reject({ body: { error: 'invalid_token' } }));
+        sdk.storage.getItem.mockImplementation(key => {
+          if (key === 'uphold.access_token') {
+            return Promise.resolve('foo');
+          }
+
+          if (key === 'uphold.refresh_token') {
+            return Promise.reject();
+          }
+        });
+
+        return sdk.exchangeToken({ client_name: 'bar', client_secret: 'biz' })
+          .catch(result => {
+            expect(sdk.client.request.mock.calls.length).toBe(1);
+            expect(sdk.client.request.mock.calls[0][0]).toBe('https://api.uphold.com/oauth2/token');
+            expect(result).toEqual({ body: { error: 'invalid_token' } });
+            done();
+          });
+      });
+
+      it('should use an existent refresh token request', () => {
+        sdk.client.request.mockReturnValueOnce(Promise.reject({ body: { error: 'invalid_token' } }));
+        sdk.client.request.mockReturnValueOnce(Promise.resolve({ body: { foo: 'bar' } }));
+        sdk.refreshRequestPromise = Promise.resolve({});
+
+        return sdk.exchangeToken({ client_name: 'bar', client_secret: 'biz' })
+          .then(result => {
+            expect(result).toEqual({ foo: 'bar' });
+          });
+      });
+    });
+
+    it('should build the request with the expected options', () => {
+      return sdk.exchangeToken({ client_id: 'foo', client_secret: 'bar' })
+        .then(() => {
+          expect(sdk.client.request).toBeCalledWith(
+            'https://api.uphold.com/oauth2/token',
+            'post',
+            'client_id=foo&client_secret=bar&grant_type=urn:ietf:params:oauth:grant-type:single-sign-on',
+            { authorization: 'Bearer token', 'content-type': 'application/x-www-form-urlencoded' }
+          );
+        });
+    });
+  });
+
   describe('getToken()', () => {
     const sdk = new SDK({ clientId: 'foo', clientSecret: 'bar' });
 

@@ -76,6 +76,23 @@ export default class SDK {
     return this.tokenRequestPromise;
   }
 
+  exchangeToken(target) {
+    const body = `client_id=${target.client_id}&client_secret=${target.client_secret}&grant_type=urn:ietf:params:oauth:grant-type:single-sign-on`;
+    const headers = {
+      'content-type': 'application/x-www-form-urlencoded'
+    };
+    const method = 'post';
+    const url = buildUrl('/oauth2/token', this.options.baseUrl, '');
+
+    const request = this.getToken().then(tokens => {
+      return this.client.request(url, method, body, { ...headers, ...buildBearerAuthorizationHeader(tokens.access_token) });
+    });
+
+    return request
+      .then(data => { return data.body; })
+      .catch(this._refreshToken(url, 'post', body, headers));
+  }
+
   getToken() {
     return this.storage.getItem(this.options.accessTokenKey)
       .then(access_token => {
