@@ -94,8 +94,13 @@ export default class SDK {
   }
 
   getToken() {
+    console.log('this.storage', this.storage);
+    console.log('this.options', this.options);
+
     return this.storage.getItem(this.options.accessTokenKey)
       .then(access_token => {
+        console.log('access_token', access_token);
+
         if (!access_token) {
           this.tokenRequestPromise = null;
 
@@ -110,7 +115,9 @@ export default class SDK {
           // Do not reject if refresh token does not exist.
           .catch(() => ({ access_token }));
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log('ERROR', error);
+
         // If there is a token request in progress, we wait for it.
         if (this.tokenRequestPromise) {
           return this.tokenRequestPromise;

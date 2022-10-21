@@ -91,8 +91,27 @@ class SDK {
     return this.tokenRequestPromise;
   }
 
+  exchangeToken(target) {
+    const body = `client_id=${target.client_id}&client_secret=${target.client_secret}&grant_type=urn:ietf:params:oauth:grant-type:single-sign-on`;
+    const headers = {
+      'content-type': 'application/x-www-form-urlencoded'
+    };
+    const method = 'post';
+    const url = (0, _utils.buildUrl)('/oauth2/token', this.options.baseUrl, '');
+    const request = this.getToken().then(tokens => {
+      return this.client.request(url, method, body, Object.assign({}, headers, (0, _utils.buildBearerAuthorizationHeader)(tokens.access_token)));
+    });
+    return request.then(data => {
+      return data.body;
+    }).catch(this._refreshToken(url, 'post', body, headers));
+  }
+
   getToken() {
+    console.log('this.storage', this.storage);
+    console.log('this.options', this.options);
     return this.storage.getItem(this.options.accessTokenKey).then(access_token => {
+      console.log('access_token', access_token);
+
       if (!access_token) {
         this.tokenRequestPromise = null;
         return Promise.reject();
@@ -105,8 +124,9 @@ class SDK {
       .catch(() => ({
         access_token
       }));
-    }).catch(() => {
-      // If there is a token request in progress, we wait for it.
+    }).catch(error => {
+      console.log('ERROR', error); // If there is a token request in progress, we wait for it.
+
       if (this.tokenRequestPromise) {
         return this.tokenRequestPromise;
       } // There was never a token request.
