@@ -1,5 +1,8 @@
 # Changelog
 
+## [v2.4.5](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.5) (2026-05-11)
+- Bump yarn to v4 [\#77](https://github.com/uphold/uphold-sdk-javascript/pull/77) ([xavi-999](https://github.com/xavi-999))
+
 ## [v2.4.4](https://github.com/uphold/uphold-sdk-javascript/releases/tag/v2.4.4) (2021-01-13)
 - Add password field to updateMe [\#46](https://github.com/uphold/uphold-sdk-javascript/pull/46) ([hitmanmcc](https://github.com/hitmanmcc))
 - Add release task [\#47](https://github.com/uphold/uphold-sdk-javascript/pull/47) ([hitmanmcc](https://github.com/hitmanmcc))
